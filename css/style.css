@@ -1,0 +1,617 @@
+@font-face {
+    font-family: "Code LIGHT";
+    src: url("./fonts/CODELight.ttf") format("truetype"), url("./fonts/CODELight.otf") format("otf"), url("./fonts/CODELight.woff") format("woff"), url("./fonts/CODELight.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Code BOLD";
+    src: url("./fonts/CODEBold.ttf") format("truetype"), url("./fonts/CODEBold.otf") format("otf"), url("./fonts/CODEBold.woff") format("woff"), url("./fonts/CODEBold.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ESTILOS GENERALES */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("./images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.js-filtered {
+    background-color: #2354b3;
+    font-family: "Code BOLD";
+}
+
+.js-highlighted {
+    background-color: white;
+    color: black;
+    font-family: "Code BOLD";
+    font-weight: bolder;
+}
+
+/* ESTILOS HEADER Y NAV */
+
+.navbar-logo {
+    width: 75%;
+    height: 20%;
+}
+
+.navbar-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+div.navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.nav-item .nav-link {
+    font-family: "CODE Bold";
+    font-size: x-large;
+}
+
+/*                                    INDEX                                    */
+
+/* NOSOTROS */
+
+.nosotrosspan {
+    font-size: larger;
+}
+
+.nosotrostitle, .artistastitle, .serviciostitle, .tarifastitle {
+    width: 100%;
+    color: white;
+    font-size: x-large;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.400);
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+}
+
+.nosotrostext, .tarifastext {
+    padding: 15px;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.400);
+    color: white;
+    font-family: "Code LIGHT", Arial, Helvetica, sans-serif;
+}
+
+.nosotrosimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.nosotros_desktop {
+    display: none;
+}
+
+/* ARTISTAS - EL ESTUDIO */
+
+.indiostext, .bandadeturistastext {
+    text-align: right;
+}
+
+.citricotext, .elmatotext, .indiostext, .bandadeturistastext, .controlroomtext, .salagrabaciontext {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-bottom: 0px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.400);
+    color: white;
+    font-family: "Code LIGHT", Arial, Helvetica, sans-serif;
+}
+
+.citricotitle, .elmatotitle, .indiostitle, .bandadeturistastitle, .controlroomtitle, .salagrabaciontitle {
+    width: 100%;
+    color: white;
+    font-size: larger;
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+}
+
+.citricoimg, .indiosimg, .elmatoimg, .bandadeturistasimg {
+    width: 100%;
+}
+
+.elmato, .bandadeturistas {
+    display: none;
+}
+
+/*                                    SERVICIOS                                    */
+
+.recordroom {
+    flex-direction: row-reverse;
+}
+
+.imgControlRoom, .imgGrabacion {
+    width: 100%;
+}
+
+.salagrabaciontitle, .salagrabaciontext {
+    text-align: right !important;
+}
+
+.formServicios {
+    margin: 1% 1% 1% 1%;
+    background-color: rgba(44, 44, 44, 0.7);
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    width: 99%;
+}
+
+.tablaTarifas {
+    overflow-x: auto;
+}
+
+.seccionSuperior {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 4% 0 4% 0;
+}
+
+.seccionInferior {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
+.seccionSelects select, .toggleButtonArea .itemButton, .seccionButtons .itemButton{
+    margin: 2% 0 2% 0;
+    border: 2px 0px 2px 0;
+    border-color: black;
+    border-style: solid;
+    font-family: "Code BOLD";
+    color: white;
+    background-color: black;
+    height: 33.3%;
+    width: 100%;
+}
+
+.seccionSelects, .seccionButtons {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 0 5% 0 5%;
+}
+
+.seccionEdit {
+    width: 100%;
+    margin: 3% 1% 1% 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.editButtons button{
+    height: 50%;
+}
+
+.itemButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.bot .itemFiltro {
+    border: 1px solid whitesmoke;
+    font-family: "Code BOLD";
+    color: white;
+    background-color: black;
+    width: 40%;
+    text-align: center;
+    margin: 0;
+}
+
+.seccionInferior button {
+    width: 70%;
+    margin-bottom: 4%;
+    border: 1px solid whitesmoke;
+    font-family: "Code BOLD";
+    color: white;
+    background-color: black;
+}
+
+.spanServicios {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-family: "Code BOLD";
+    color: whitesmoke;
+    background-color: black;
+    border:  1px solid whitesmoke;
+    margin-bottom: 5%;
+}
+
+.seccionFiltro .bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.js-delete, .js-edit {
+    background: none;
+    border: 0;
+    margin: 1% 10% 1% 10%;
+    width: 80%;
+}
+
+.regFa {
+    color: white;
+}
+
+.highFa {
+    color: black;
+}
+
+/* ESTILOS DE TABLA */
+
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: white;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.400);
+    text-align: center;
+    font-family: "Code LIGHT", Arial, Helvetica, sans-serif;
+}
+
+td {
+    padding: 1%
+}
+
+.topleft, .topmid, .topright {
+    padding: 5px;
+    border-bottom: solid 1px whitesmoke;
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+}
+
+.topmid, .mid, .botmid {
+    border-right: solid 1px whitesmoke;
+}
+
+.topleft, .midleft, .botleft {
+    border-right: solid 1px whitesmoke;
+}
+
+.midleft, .mid, .midright {
+    border-bottom: solid 1px whitesmoke;
+}
+
+/*                                    RESERVAS                                    */
+
+/* ESTILOS LISTA */
+
+.ventajastitle, .servicestitle {
+    width: 100%;
+    color: white;
+    font-size: x-large !important;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.400);
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+}
+
+section li span {
+    font-family: 'code bold';
+}
+
+.listaventajas {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    margin: auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.400);
+    color: white;
+    font-family: "Code LIGHT", Arial, Helvetica, sans-serif;
+}
+
+.contactossstudio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background-color: rgba(0, 0, 0, 0.400);
+    width: 90%;
+    color: white;
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+}
+
+.reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.reserva span, .reserva input, .reserva select {
+    margin-top: 3%;
+}
+
+.cateServicioA, .cateServicioB {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.spanReserva {
+    width: 100%;
+}
+
+.cateservicio {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    justify-content: center;
+    width: 100%;
+}
+
+.select#horario {
+    border: 2px solid white;
+}
+
+.confirmaForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.confirmarButton {
+    background-color: rgba(44, 44, 44, 0.7);
+    width: 10%;
+}
+
+.confirmarButton img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.studiodrums {
+    display: none;
+}
+
+.captchaPlace {
+    font-size: x-large;
+    color: #2354b3;
+}
+
+.mensajeCAPTCHA {
+    color: white;
+    width: 70%;
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+    margin: 5% 15% 5% 15%;
+    border: thin solid whitesmoke;
+    text-align: center;
+}
+
+/* ESTILOS FOOTER */
+
+footer {
+    text-align: center;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(80, 80, 80, 0.822);
+    padding-top: 0.5%;
+}
+
+.socialbuttons img {
+    width: 2rem;
+}
+
+.socialbuttons li {
+    list-style: none;
+}
+
+.socialbuttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.copyright {
+    color: white;
+    font-family: "Code light", Arial, Helvetica, sans-serif;
+    font-size: smaller;
+}
+
+/* ESTILOS RESPONSIVE */
+
+@media only screen and (min-width: 1024px) {
+    .navbar-logo {
+        width: 30%;
+        height: 20%;
+    }
+    /*                               HOME                    */
+    .nosotrosspan {
+        font-size: x-large;
+    }
+    .nosotrosimg {
+        display: none;
+    }
+    .nosotros_desktop {
+        display: block;
+        width: 100%;
+    }
+    .nosotrostext, .tarifastext {
+        width: 98%;
+    }
+    .nosotrostitle, .artistastitle, .ventajastitle, .serviciostitle, .tarifastitle {
+        font-size: 200%;
+    }
+    /*                          ARTISTAS                               */
+    .citricotext, .elmatotext, .indiostext, .bandadeturistastext, .controlroomtext, .salagrabaciontext {
+        font-size: larger;
+    }
+    .elmato, .bandadeturistas {
+        display: block;
+    }
+    .citrico, .elmato {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin: 15px;
+        margin-top: 20px;
+    }
+    .indios, .bandadeturistas {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row-reverse;
+        margin: 15px;
+        margin-top: 20px;
+    }
+    .citricoimg, .elmatoimg, .indiosimg, .bandadeturistasimg {
+        height: 300px;
+        width: 300px;
+    }
+    /*                         SERVICIOS                        */
+    .controlroom {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-top: 2%;
+    }
+    .recordroom {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row-reverse;
+        margin-top: 2%;
+    }
+    .salagrabaciontext {
+        text-align: right;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.400);
+        color: white;
+        font-family: "Code LIGHT", Arial, Helvetica, sans-serif;
+        font-size: larger;
+    }
+    .imgControlRoom, .imgGrabacion {
+        width: 40%;
+    }
+    .introTarifas {
+        height: 20%;
+    }
+    .formServicios {
+        height: 40%;
+    }
+    .tablaTarifas {
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    table {
+        width: 90%;
+        margin: 2% 1% 2% 1%;
+        font-size: larger;
+    }
+    .seccionFiltro {
+        width: 100%;
+        height: 33%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 5%;
+    }
+    .seccionFiltro button {
+        width: 25%;
+    }
+    .seccionFiltro input {
+        width: 25%;
+    }
+    .seccionFiltro input, .seccionFiltro button {
+        margin: 1% 0;
+    }
+    #js-limpiarFiltro {
+        margin: 1% 0 1% 0;
+        width: 30%;
+    }
+    #js-filtro404, .spanServicios {
+        font-size: large;
+    }
+    /*                      RESERVAS                     */
+    /* ESTILOS DE FORM RESERVA */
+    .listaventajas, .form {
+        font-size: larger;
+    }
+    .studiodrums {
+        display: block;
+        margin: 1% 25% 0 25%;
+        width: 50%;
+        height: 50%;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+    .reserva span, .reserva input, .reserva select {
+        width: 50%;
+        margin-top: 1%;
+    }
+    .cateservicio {
+        justify-content: space-around;
+        width: 50%;
+    }
+    .confirmaForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .confirmarButton {
+        background-color: rgba(44, 44, 44, 0.7);
+        width: 10%;
+        border: 0px;
+    }
+    .confirmarButton img {
+        width: 100%;
+    }
+    #js-mensajeCAPTCHA {
+        font-size: larger;
+    }
+    /*                      SETTINGS DE FOOTER                      */
+    .socialbuttons img {
+        width: 3rem;
+    }
+}
