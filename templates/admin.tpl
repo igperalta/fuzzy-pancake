@@ -74,6 +74,8 @@
             </tbody>
         </table>
 
+        <button> LOGOUT </button>
+
         {*FALTA BOTON DE LOGOUT, YA ESTA ENRUTADO Y LA FUNCION HECHA*}
 
         {include file="footer.tpl"}
