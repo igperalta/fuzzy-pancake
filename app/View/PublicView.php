@@ -7,11 +7,18 @@ class PublicView {
         $this->smarty = new Smarty();
         $this->titleHome = "Silver Sea Studio | Home";
         $this->titleServicios = "Silver Sea Studio | Servicios";
+        $this->titleLogin = "Silver Sea Studio | Login";
     }
 
     function renderHome() {
         $this->smarty->assign('title', $this->titleHome);
         $this->smarty->display('./templates/home.tpl');
+    }
+
+    function renderLogin($message = "") {
+        $this->smarty->assign('title', $this->titleLogin);
+        $this->smarty->assign('message', $message);
+        $this->smarty->display('./templates/login.tpl');
     }
 
     function renderServicios($componentes, $marcas) {

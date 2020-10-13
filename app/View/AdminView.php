@@ -2,181 +2,22 @@
 
 class AdminView {
 
-    private $titleLogin;
     private $titleAdministrador;
 
     public function __construct() {
-        $this->titleLogin = "Silver Sea Studio | Login";
+        $this->smarty = new Smarty();
         $this->titleAdministrador = "Silver Sea Studio | Administrador";
     }
 
     function ShowAdmin(){
-        header("Location: ".BASE_URL."administrador");
+        header("Location: ".BASE_URL."administration");
     }
-
-    function renderLogin() {
-        $html = '
-        <!DOCTYPE html>
-        <html lang="en">
-        
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>'.$this->titleLogin.'</title>
-                <link rel="stylesheet" href="./css/style.css">
-                <link rel="stylesheet" href="./css/bootstrap.min.css">
-                <script src="./js/tpe.js"></script>
-                <link rel="shortcut icon" href="./css/images/favicon.ico"
-                    type="image/x-icon">
-            </head>
-        
-            <body>
-                <header>
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <a class="navbar-brand navbar-logo" href="#"><img
-                                src="./css/images/logo_double_arrow2.jpg"
-                                alt="Silver Sea Studios Logo"></a>
-                        <button class="navbar-toggler collapsed bg-dark" type="button"
-                            data-toggle="collapse"
-                            data-target="#navbarCollapsed"
-                            aria-controls="navbarCollapsed" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse" id="navbarCollapsed">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./home">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./servicios">Servicios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./administrador">Administrador</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
-
-
-                <p class="servicestitle">INICIAR SESIÓN</p>
-                <div class="contactossstudio">
-                <section class="form">
-                    <form class="reserva" id="formReserva">
-
-                        <span class="spanReserva">E-MAIL</span>
-                        <input type="text" name="input-email"placeholder="E-MAIL">
-                        <span class="spanReserva">PASSWORD</span>
-                        <input type="text" name="input-email" placeholder="PASSWORD">
-
-                        <div class="confirmaForm">
-                            <span class="spanReserva">Para ingresar clickee el logo</span>
-                            <div class="divconfirmaCaptcha">
-
-                            <button type="button" id="js-confirmarButton" class="confirmarButton">
-                            <img src="./css/images/botoncaptcha.png" alt=""></button>
-                            </div>
-
-                            <div class="mensajeCAPTCHA">
-                                <span id="js-mensajeCAPTCHA" class="hidden"></span>
-                            </div>
-                        </div>
-                    </form>
-
-                    <img class="studiodrums" src="./css/images/studiodrums.png" alt="Bateria
-                    de Estudio">
-                    ';
-
-                    echo $html;
-    }
-    
+      
     function renderAdministrarBBDD($componentes, $marcas) {
-
-        $html = '
-    
-                    <section class "componentes">
-                    <h1 class="servicestitle">ADMINISTRAR BBDD EQUIPAMIENTO</h1>
-        
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID componente</th>
-                                <th>ID marca</th>
-                                <th>Tipo</th>
-                                <th>Modelo</th>
-                                <th>Precio</th>
-                                <th>Gama</th>
-                                <th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                ';
-        
-                foreach($componentes as $componente) {
-                        $html .= '
-                            <tr>
-                                <td>'.$componente->id_componente.'</td>
-                                <td>'.$componente->id_marca.'</td>
-                                <td>'.$componente->tipo.'</td>
-                                <td>'.$componente->modelo.'</td>
-                                <td>'.$componente->precio.'</td>
-                                <td>'.$componente->gama.'</td>
-                                <td>
-                                    <div>
-                                        <a class="edit" href='.editComponente/$componente->id_componente.'>Editar</a>
-                                    </div>
-
-                                    <div>
-                                    <a class="delete" href='.deleteComponente/$componente->id_componente.'>Eliminar</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        ';
-                }
-                    $html .=
-                    ' </tbody>
-                        </table>                   
-
-
-
-                    <section class "marcas">
-                    <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
-        
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID marca</th>
-                                <th>Nombre</th>
-                                <th>Origen</th>
-                                <th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                ';
-
-                foreach($marcas as $marca) {
-                    $html .= '
-                        <tr>
-                            <td>'.$marca->id_marca.'</td>
-                            <td>'.$marca->nombre.'</td>
-                            <td>'.$marca->origen.'</td>
-                            <td>
-                                <div>
-                                    <a class="edit" href='.editMarca/$marca->id_marca.'>Editar</a>
-                                </div>
-
-                                <div>
-                                <a class="delete" href='.deleteMarca/$marca->id_marca.'>Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                    ';
-            }
-                $html .=
-                ' </tbody>
-                    </table>';
-            echo $html;
+        $this->smarty->assign('title', $this->titleAdministrador);
+        $this->smarty->assign('componentes', $componentes);
+        $this->smarty->assign('marcas', $marcas);
+        $this->smarty->display('./templates/admin.tpl');
     }
     
     function renderAltaMarcaComponentes($marcas) {
@@ -221,7 +62,7 @@ class AdminView {
 
                 foreach($marcas as $marca){
                     $html .= 
-                    '<option value="'.$marca->id_marca.'">'.$marca->nombre.'</option>';
+                    '<option value="'.$marca->id_marca.'">'.$marca->marca.'</option>';
                 }
 
                 $html .= '

@@ -4,7 +4,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>{$titulo}</title>
+                <title>{$title}</title>
                 <base href="{BASE_URL}">
                 <link rel="stylesheet" href="./css/style.css">
                 <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -15,7 +15,7 @@
             <body class="homep">
                 <header>
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <a class="navbar-brand navbar-logo" href="#"><img
+                        <a class="navbar-brand navbar-logo" href="./home"><img
                                 src="./css/images/logo_double_arrow2.jpg"
                                 alt="Silver Sea Studios Logo"></a>
                         <button class="navbar-toggler collapsed bg-dark" type="button"
@@ -34,7 +34,7 @@
                             <a class="nav-link" href="./servicios">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./administrador">Administrador</a>
+                            <a class="nav-link" href="./login">Login</a>
                         </li>
                     </ul>
                         </div>
