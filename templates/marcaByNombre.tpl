@@ -1,18 +1,21 @@
-        <h1>Detalle de marca:{$marca->nombre}</h2>
+{include file="header.tpl"}
 
-        <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Origen</th>
-                    </tr>
-                </thead>
-                <tbody>
+<h1>Detalle de marca: {$marca[0]->marca}</h2>
 
-                    <tr>
-                        <td>{$marca->nombre}</td>
-                        <td>{$marca->origen}</td>
-                    </tr>
-                </tbody>
-                </table>
-        <a href="servicios">Volver</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Origen</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{$marca[0]->marca}</td>
+                <td>{$marca[0]->origen}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="servicios">Volver</a>
+    {include file="footer.tpl"}

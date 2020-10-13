@@ -1,9 +1,11 @@
-<h1>Detalle de componente:{$componente->modelo}</h1>
+{include file="header.tpl"}
+<h1>Detalle de componente: {$component[0]->marca} {$component[0]->modelo}</h1>
 
         <table>
                 <thead>
                     <tr>
                         <th>Tipo</th>
+                        <th>Marca</th>
                         <th>Modelo</th>
                         <th>Precio</th>
                         <th>Gama</th>
@@ -12,11 +14,13 @@
                 <tbody>
 
                     <tr>
-                        <td>{$componente->tipo}</td>
-                        <td>{$componente->modelo}</td>
-                        <td>{$componente->precio}</td>
-                        <td>{$componente->gama}</td>
+                        <td>{$component[0]->tipo}</td>
+                        <td>{$component[0]->marca}</td>
+                        <td>{$component[0]->modelo}</td>
+                        <td>{$component[0]->precio}</td>
+                        <td>{$component[0]->gama}</td>
                     </tr>
                 </tbody>
                 </table>
         <a href="servicios">Volver</a>
+{include file="footer.tpl"}

@@ -5,7 +5,7 @@ class PublicModel {
     private $db;
 
     public function __construct() {
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_studio;charset=utf8', 'root', 'root');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_studio;charset=utf8', 'root', '');
     }
 
                                             //FUNCIONES PUBLICAS
@@ -20,7 +20,7 @@ class PublicModel {
     }
 
     function getComponenteByID($id_componente) {
-        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, componente.id_componente, componente.id_marca, marca.nombre FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE componente.id_componente=?');
+        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, componente.id_componente, componente.id_marca, marca.marca FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE componente.id_componente=?');
         $query->execute(array($id_componente));
         $componente = $query->fetchAll(PDO::FETCH_OBJ);
         return $componente;
@@ -28,7 +28,7 @@ class PublicModel {
     }
 
     function getComponentesPorMarca($marca) {
-        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, marca.nombre FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE marca.nombre=?');
+        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, marca.marca FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE marca.marca=?');
         $query->execute(array($marca));
         $componentes = $query->fetchAll(PDO::FETCH_OBJ);
         return $componentes;
@@ -44,7 +44,7 @@ class PublicModel {
     }
 
     function getMarcaByID($id_marca) {
-        $query = $this->db->prepare('SELECT marca.id_marca, marca.nombre, marca.origen FROM marca WHERE marca.id_marca=?');
+        $query = $this->db->prepare('SELECT marca.id_marca, marca.marca, marca.origen FROM marca WHERE marca.id_marca=?');
         $query->execute(array($id_marca));
         $marca = $query->fetchAll(PDO::FETCH_OBJ);
         return $marca;
@@ -52,7 +52,7 @@ class PublicModel {
     }
 
     function getMarcaByNombre($nombre) {
-        $query = $this->db->prepare('SELECT marca.id_marca, marca.nombre, marca.origen FROM marca WHERE marca.nombre=?');
+        $query = $this->db->prepare('SELECT marca.id_marca, marca.marca, marca.origen FROM marca WHERE marca.marca=?');
         $query->execute(array($nombre));
         $marca = $query->fetchAll(PDO::FETCH_OBJ);
         return $marca;

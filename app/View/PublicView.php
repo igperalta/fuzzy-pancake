@@ -10,32 +10,28 @@ class PublicView {
     }
 
     function renderHome() {
-        $this->smarty->assign('titulo', $this->titleHome);
+        $this->smarty->assign('title', $this->titleHome);
         $this->smarty->display('./templates/home.tpl');
     }
 
     function renderServicios($componentes, $marcas) {
-        $this->smarty->assign('titulo', $this->titleServicios);
-        $this->smarty->assign('componentes', $this->$componentes);
-        $this->smarty->assign('marcas', $this->$marcas);
-
-        $this->smarty->display('./templates/header.tpl');
+        $this->smarty->assign('title', $this->titleServicios);
+        $this->smarty->assign('componentes', $componentes);
+        $this->smarty->assign('marcas', $marcas);
+        ///Cuando llamamos a variables que pasamos por parametro no se usa $this
         $this->smarty->display('./templates/servicios.tpl');
-        $this->smarty->display('./templates/footer.tpl');
 
     }
 
     function renderComponenteByID($componente) {
-        $this->smarty->assign('titulo', $this->titleServicios);
-        $this->smarty->assign('componente', $this->$componente);
+        $this->smarty->assign('title', $this->titleServicios);
+        $this->smarty->assign('component', $componente);
 
-        $this->smarty->display('./templates/header.tpl');
         $this->smarty->display('./templates/componenteByID.tpl');
-        $this->smarty->display('./templates/footer.tpl');
     }
 
     function renderComponentesPorMarca($marca, $componentes) {
-        $this->smarty->assign('titulo', $this->titleServicios);
+        $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('componentes', $this->$componentes);
         $this->smarty->assign('marca', $this->$marca);
 
@@ -45,13 +41,10 @@ class PublicView {
     }
 
     function renderMarcaByNombre($marca) {
-        $this->smarty->assign('titulo', $this->titleServicios);
-        $this->smarty->assign('marca', $this->$marca);
+        $this->smarty->assign('title', $this->titleServicios);
+        $this->smarty->assign('marca', $marca);
 
-        $this->smarty->display('./templates/header.tpl');
         $this->smarty->display('./templates/marcaByNombre.tpl');
-        $this->smarty->display('./templates/footer.tpl');
-        
     }
 
     function renderError() {

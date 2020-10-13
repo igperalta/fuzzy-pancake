@@ -26,7 +26,7 @@ class PublicController {
     function detalleComponente() {
         if((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
-            $componente = $this->PublicModel->getComponenteByID($id);
+            $componente = $this->model->getComponenteByID($id);
             $this->view->renderComponenteByID($componente);
         }
     }
@@ -34,7 +34,7 @@ class PublicController {
     function detalleMarca() {
         if((isset($_REQUEST['nombre']))) {
             $nombre = $_REQUEST['nombre'];
-            $marca = $this->PublicModel->getMarcaByNombre($nombre);
+            $marca = $this->model->getMarcaByNombre($nombre);
             $this->view->renderMarcaByNombre($marca);
         }
     }
@@ -43,7 +43,7 @@ class PublicController {
         //verifica datos obligatorios
         if ((isset($_REQUEST['marca']))) {
             $marca = $_REQUEST ['marca'];
-            $componentes = $this->PublicModel->getComponentesPorMarca($marca);
+            $componentes = $this->model->getComponentesPorMarca($marca);
             $this->view->renderComponentesPorMarca($marca, $componentes);
         }
     }
