@@ -20,45 +20,32 @@ class PublicController {
     function serviciosController() {
         $componentes = $this->model->getComponentes();
         $marcas = $this->model->getMarcas();
-        $this->view->renderServicios($componentes, $marcas);        
+        $this->view->renderServicios($componentes, $marcas);
     }
     
-    /*function showComponentesPorMarca() {
-
-        //verifica datos obligatorios
-        if (!isset($_GET['marca']) || empty($_GET['marca'])) {
-            $this->view->renderError();
-            die();
+    function detalleComponente() {
+        if((isset($_REQUEST['id']))) {
+            $id = $_REQUEST['id'];
+            $componente = $this->PublicModel->getComponenteByID($id);
+            $this->view->renderComponenteByID($componente);
         }
+    }
 
-        //obtiente la marca enviada por GET
-        $marca = $_GET['marca'];
+    function detalleMarca() {
+        if((isset($_REQUEST['nombre']))) {
+            $nombre = $_REQUEST['nombre'];
+            $marca = $this->PublicModel->getMarcaByNombre($nombre);
+            $this->view->renderMarcaByNombre($marca);
+        }
+    }
 
-        //obtendo los componentes por marca
-        $componentes = $this->model->getComponentesPorMarca($marca);
-
-        //actualizo la vista
-        $this->view->renderComponentesPorMarca($marca, $componentes);
-    }*/
-
-    /*function showComponentes() {
-        //mostrar unicamente on load 
-
-        //llamo al modelo para obtener todos los componentes
-        $componentes = $this->model->getComponentes();
-
-        //actualizo la vista
-        $this->view->renderComponentes($componentes);
-    }*/
-
-    /*function showMarcas() {
-        //mostrar unicamente on load 
-
-        //llamo al modelo para obtener todos los componentes
-        $marcas = $this->model->getMarcas();
-
-        //actualizo la vista
-        $this->view->renderMarcas($marcas);
-    }*/
+    function showComponentesPorMarca() {
+        //verifica datos obligatorios
+        if ((isset($_REQUEST['marca']))) {
+            $marca = $_REQUEST ['marca'];
+            $componentes = $this->PublicModel->getComponentesPorMarca($marca);
+            $this->view->renderComponentesPorMarca($marca, $componentes);
+        }
+    }
     
 }

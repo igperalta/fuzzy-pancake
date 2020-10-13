@@ -10,6 +10,10 @@ class AdminView {
         $this->titleAdministrador = "Silver Sea Studio | Administrador";
     }
 
+    function ShowAdmin(){
+        header("Location: ".BASE_URL."administrador");
+    }
+
     function renderLogin() {
         $html = '
         <!DOCTYPE html>
@@ -82,31 +86,112 @@ class AdminView {
 
                     <img class="studiodrums" src="./css/images/studiodrums.png" alt="Bateria
                     de Estudio">
+                    ';
+
+                    echo $html;
+    }
+    
+    function renderAdministrarBBDD($componentes, $marcas) {
+
+        $html = '
+    
+                    <section class "componentes">
+                    <h1 class="servicestitle">ADMINISTRAR BBDD EQUIPAMIENTO</h1>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID componente</th>
+                                <th>ID marca</th>
+                                <th>Tipo</th>
+                                <th>Modelo</th>
+                                <th>Precio</th>
+                                <th>Gama</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                ';
+        
+                foreach($componentes as $componente) {
+                        $html .= '
+                            <tr>
+                                <td>'.$componente->id_componente.'</td>
+                                <td>'.$componente->id_marca.'</td>
+                                <td>'.$componente->tipo.'</td>
+                                <td>'.$componente->modelo.'</td>
+                                <td>'.$componente->precio.'</td>
+                                <td>'.$componente->gama.'</td>
+                                <td>
+                                    <div>
+                                        <a class="edit" href='.editComponente/$componente->id_componente.'>Editar</a>
+                                    </div>
+
+                                    <div>
+                                    <a class="delete" href='.deleteComponente/$componente->id_componente.'>Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        ';
+                }
+                    $html .=
+                    ' </tbody>
+                        </table>                   
 
 
 
+                    <section class "marcas">
+                    <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID marca</th>
+                                <th>Nombre</th>
+                                <th>Origen</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                ';
+
+                foreach($marcas as $marca) {
+                    $html .= '
+                        <tr>
+                            <td>'.$marca->id_marca.'</td>
+                            <td>'.$marca->nombre.'</td>
+                            <td>'.$marca->origen.'</td>
+                            <td>
+                                <div>
+                                    <a class="edit" href='.editMarca/$marca->id_marca.'>Editar</a>
+                                </div>
+
+                                <div>
+                                <a class="delete" href='.deleteMarca/$marca->id_marca.'>Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    ';
+            }
+                $html .=
+                ' </tbody>
+                    </table>';
+            echo $html;
+    }
+    
+    function renderAltaMarcaComponentes($marcas) {
+
+        $html = '
                 <section class="formAltaMarca">
                 <p class="servicestitle">ALTA DE NUEVA MARCA</p>
 
-                <form class="reserva" id="formReserva" method="POST" action="altaMarca>
+                <form class="reserva" id="formReserva" method="POST" action="altaMarca">
 
-                <span class="spanReserva">Tipo de componente</span>
-                <input type="text" name="input-tipoComponente" placeholder="Tipo de componente">
+                <span class="spanReserva">Nombre</span>
+                <input type="text" name="input-nombreMarca" placeholder="Nombre" required>
 
-                <span class="spanReserva">Modelo</span>
-                <input type="text" name="input-modeloComponente" placeholder="Modelo">
-
-                <span class="spanReserva">Precio en USD</span>
-                <input type="number" name="input-precio" placeholder="Precio en USD">
-
-                <span class="spanReserva">Gama</span>
-                <input type="text" name="input-gama" placeholder="Gama">
-
-                <span class="spanReserva">Marca</span>
-                <select type="number" name="input-idMarca">
-                <option>Shure</option>
-                <option>Sennheiser</option>
-                </select
+                <span class="spanReserva">Origen</span>
+                <input type="text" name="input-origenMarca" placeholder="Origen" required>
 
                 <br> 
                 <button type="submit" name="insert" id="js-confirmarButton" class="confirmarButton">Agregar</button>
@@ -117,33 +202,36 @@ class AdminView {
                 <section class="formAltaComponente">
                 <p class="servicestitle">ALTA DE NUEVO COMPONENTE</p>
 
-                <form class="reserva" id="formReserva" method="POST" action="altaComponente>
+                <form class="reserva" id="formReserva" method="POST" action="altaComponente">
 
                 <span class="spanReserva">Tipo de componente</span>
-                <input type="text" name="input-tipoComponente" placeholder="Tipo de componente">
+                <input type="text" name="input-tipoComponente" placeholder="Tipo de componente" required>
 
                 <span class="spanReserva">Modelo</span>
-                <input type="text" name="input-modeloComponente" placeholder="Modelo">
+                <input type="text" name="input-modeloComponente" placeholder="Modelo" required>
 
                 <span class="spanReserva">Precio en USD</span>
-                <input type="number" name="input-precio" placeholder="Precio en USD">
+                <input type="number" name="input-precio" placeholder="U$D" required>
 
                 <span class="spanReserva">Gama</span>
-                <input type="text" name="input-gama" placeholder="Gama">
+                <input type="text" name="input-gama" placeholder="Gama" required>
 
                 <span class="spanReserva">Marca</span>
-                <select type="number" name="input-idMarca">
-                <option>Shure</option>
-                <option>Sennheiser</option>
-                </select
+                <select name="input-idMarca">';
+
+                foreach($marcas as $marca){
+                    $html .= 
+                    '<option value="'.$marca->id_marca.'">'.$marca->nombre.'</option>';
+                }
+
+                $html .= '
+                </select>
 
                 <br> 
                 <button type="submit" name="insert" id="js-confirmarButton" class="confirmarButton">Agregar</button>
                 </form>
 
         
-
-
         <footer>
             <section class="socialmedia">
                 <ul class="socialbuttons">
@@ -173,49 +261,65 @@ class AdminView {
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
         </body>
-
         </html>
         ';
         
         echo $html;
     }
 
-    function renderAltaNuevoComponente($tipo, $modelo, $precio, $gama, $id_marca) {
+    function renderEdicionComponente($componente) {
         $html = '
-                <p class="servicestitle">ALTA DE NUEVO COMPONENTE</p>
+        <section class="formEdicionComponente">
+        <p class="servicestitle">EDITAR COMPONENTE</p>
 
+        <form class="reserva" id="formReserva" method="POST" action="editComponente/'.$componente->id_componente.'" >
 
-                <section class="form">
-                <form class="reserva" id="formReserva">
+        <span class="spanReserva">Tipo de componente</span>
+        <input type="text" name="input-tipoComponente" placeholder="Tipo de componente" value="'.$componente->tipo.'">
 
-                    <span class="spanReserva">Tipo de componente</span>
-                    <input type="text" name="input-tipoComponente" placeholder="Tipo de componente">
+        <span class="spanReserva">Modelo</span>
+        <input type="text" name="input-modeloComponente" placeholder="Modelo" value="'.$componente->modelo.'">
 
-                    <span class="spanReserva">Modelo</span>
-                    <input type="text" name="input-modeloComponente" placeholder="Modelo">
+        <span class="spanReserva">Precio en USD</span>
+        <input type="number" name="input-precio" placeholder="U$D" value="'.$componente->precio.'">
 
-                    <span class="spanReserva">Precio en USD</span>
-                    <input type="number" name="input-precio" placeholder="Precio en USD">
+        <span class="spanReserva">Gama</span>
+        <input type="text" name="input-gama" placeholder="Gama" value="'.$componente->gama.'">
 
-                    <span class="spanReserva">Gama</span>
-                    <input type="text" name="input-gama" placeholder="Gama">
+        <span class="spanReserva">Marca</span>
+        <input type="number" name="input-idMarca" placeholder="ID Marca" value="'.$componente->id_marca.'">
 
-                    <span class="spanReserva">ID de marca</span>
-                    <input type="number" name="input-idMarca" placeholder="ID de marca">
+        <br> 
+        <button type="submit" name="insert" id="js-confirmarButton" class="confirmarButton">Modificar</button>
+        </form>
 
-                    <div class="confirmaForm">
-                        <span class="spanReserva">Agregar</span>
-
-                        <div class="divconfirmaCaptcha">
-                        <button type="button" id="js-confirmarButton" class="confirmarButton">Agregar</button>
-                        </div>
+        <a href="administrador">Volver</a>
         ';
 
         echo $html;
     }
 
+    function renderEdicionMarca($marca) {
+        $html = '
+        <section class="formEdicionMarca">
+        <p class="servicestitle">EDITAR MARCA</p>
 
+        <form class="reserva" id="formReserva" method="POST" action="editMarca/'.$marca->id_marca.'">
 
+        <span class="spanReserva">Nombre</span>
+        <input type="text" name="input-nombreMarca" placeholder="Nombre" value="'.$marca->nombre.'">
 
+        <span class="spanReserva">Origen</span>
+        <input type="text" name="input-origenMarca" placeholder="Origen" value="'.$marca->origen.'">
+
+        <br> 
+        <button type="submit" name="insert" id="js-confirmarButton" class="confirmarButton">Modificar</button>
+        </form>
+
+        <a href="administrador">Volver</a>
+        ';
+
+        echo $html;
+    }
 
 }
