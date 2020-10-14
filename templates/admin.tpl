@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="header_a.tpl"}
 
 <section class="marcas">
     <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
@@ -35,6 +35,8 @@
             {/foreach}
         </tbody>
     </table>
+
+    <h3 class="servicestitle"> <a href="initAltaMarca"> INGRESAR NUEVA MARCA </a></h3>
 </section>
 
 
@@ -79,6 +81,7 @@
             {/foreach}
         </tbody>
     </table>
+    <h3 class="servicestitle"> <a href="initAltaComponente"> INGRESAR NUEVO COMPONENTE </a></h3>
 </section>
 
 {include file="footer.tpl"}

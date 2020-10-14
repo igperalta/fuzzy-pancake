@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="header_a.tpl"}
 
 <section class="formEdicionComponente">
     <p class="servicestitle">EDITAR COMPONENTE</p>

@@ -1,4 +1,3 @@
-{include file="header.tpl"}
 
 <h1>Detalle de marca: {$marca[0]->marca}</h1>
 

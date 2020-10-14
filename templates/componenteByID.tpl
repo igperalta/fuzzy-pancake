@@ -1,4 +1,3 @@
-{include file="header.tpl"}
 <h1>Detalle de componente: {$component[0]->marca} {$component[0]->modelo}</h1>
 
         <table>

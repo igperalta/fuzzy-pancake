@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="header_a.tpl"}
 
 <section class="formEdicionMarca">
     <p class="servicestitle">Editando marca: {$marca[0]->marca}</p>

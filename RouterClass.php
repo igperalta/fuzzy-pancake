@@ -24,7 +24,7 @@ class Route {
             return false;
         }
         foreach ($partsRoute as $key => $part) {
-            if($part[0] != ":"){
+            if($part != ":"){
                 if($part != $partsURL[$key])
                 return false;
             } //es un parametro

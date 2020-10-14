@@ -23,6 +23,9 @@ class AdminController
             header("Location: " . LOGIN);
             die();
         }
+        else{
+            return true;
+        }
     }
 
     function AdminController()
@@ -32,18 +35,23 @@ class AdminController
         $this->view->renderAdministrarBBDD($componentes, $marcas);
     }
 
-    function altaMarcaComponentes()
+    function initAltaComponente()
     {
         $marcas = $this->model->getMarcasAdmin();
-        $this->view->renderAltaMarcaComponentes($marcas);
+        $this->view->renderAltaComponente($marcas);
+    }
+
+    function initAltaMarca()
+    {
+        $this->view->renderAltaMarca();
     }
 
     function altaMarca()
     {
         if ((isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
-            $nombre = $_POST['input-nombreMarca'];
+            $marca = $_POST['input-nombreMarca'];
             $origen = $_POST['input-origenMarca'];
-            $this->model->altaNuevaMarca($nombre, $origen);
+            $this->model->altaNuevaMarca($marca, $origen);
             $this->view->showAdmin();
         }
     }

@@ -36,9 +36,9 @@ class AdminModel {
     }
 
     //MARCAS
-    function altaNuevaMarca($nombre, $origen) {
+    function altaNuevaMarca($marca, $origen) {
         $query = $this->db->prepare("INSERT INTO marca(marca, origen) VALUES(?,?)");
-        $query->execute(array($nombre, $origen));
+        $query->execute(array($marca, $origen));
     }
 
     function bajaMarca($id_marca) {

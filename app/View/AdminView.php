@@ -4,14 +4,16 @@ class AdminView
 {
 
     private $titleAdministrador;
-    private $titleAltaMarcaComponentes;
+    private $titleAltaMarca;
+    private $titleAltaComponente;
     private $titleEditMarca;
 
     public function __construct()
     {
         $this->smarty = new Smarty();
         $this->titleAdministrador = "Silver Sea Studio | Administrador";
-        $this->titleAltaMarcaComponentes = "Silver Sea Studio | Admin | Alta Marca o Componentes";
+        $this->titleAltaMarca = "Silver Sea Studio | Admin | Alta Marca";
+        $this->titleAltaComponente = "Silver Sea Studio | Admin | Alta Componente";
         $this->titleEditMarca = "Silver Sea Studio | Admin | Editar Marca";
         $this->titleEditComponente = "Silver Sea Studio | Admin | Editar Componente";
     }
@@ -29,11 +31,17 @@ class AdminView
         $this->smarty->display('./templates/admin.tpl');
     }
 
-    function renderAltaMarcaComponentes($marcas)
+    function renderAltaMarca()
     {
-        $this->smarty->assign('title', $this->titleAltaMarcaComponentes);
+        $this->smarty->assign('title', $this->titleAltaMarca);
+        $this->smarty->display('./templates/adm_altaMarca.tpl');
+    }
+    
+    function renderAltaComponente($marcas)
+    {
+        $this->smarty->assign('title', $this->titleAltaComponente);
         $this->smarty->assign('marcas', $marcas);
-        $this->smarty->display('./templates/altaMarcaComponentes.tpl');
+        $this->smarty->display('./templates/adm_altaComponente.tpl');
     }
 
     function renderEdicionMarca($marca)

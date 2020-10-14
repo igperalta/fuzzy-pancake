@@ -1,5 +1,3 @@
-{include file="header.tpl"}
-
 <section class="content">
     <section class="introServicios">
         <h1 class="serviciostitle">EL ESTUDIO</h1>
@@ -60,10 +58,10 @@
             <tbody>
 
                 {foreach from=$componentes item=componente}
-                <tr>
-                    <td>{$componente->tipo}</td>
-                    <td><a href='detalle?id={$componente->id_componente}'>{$componente->modelo}</a></td>
-                </tr>
+                    <tr>
+                        <td>{$componente->tipo}</td>
+                        <td><a href='detalle?id={$componente->id_componente}'>{$componente->modelo}</a></td>
+                    </tr>
                 {/foreach}
             </tbody>
         </table>
@@ -73,9 +71,9 @@
             <h1 class="serviciostitle">MARCAS AMIGAS</h1>
             <ul>
                 {foreach from=$marcas item=marca}
-                <li class="controlroomtext"><a href='filtrar?nombre={$marca->marca}'>{$marca->marca}</a></li>
+                    <li class="controlroomtext"><a href='filtrar?nombre={$marca->marca}'>{$marca->marca}</a></li>
                 {/foreach}
 
             </ul>
         </section>
-{include file="footer.tpl"}
+        {include file="footer.tpl"}
