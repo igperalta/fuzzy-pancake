@@ -18,9 +18,14 @@
     $r->addRoute("verifyLogin", "POST", "PublicController", "VerifyLogin");
     
     $r->addRoute("administration", "GET", "AdminController", "AdminController");
+
+    $r->addRoute("deleteMarca", "GET", "AdminController", "deleteMarca");
     $r->addRoute("initEditarMarca", "GET", "AdminController", "modoEdicionMarca");
     $r->addRoute("editMarca", "POST", "AdminController", "editMarca");
-    $r->addRoute("deleteMarca", "GET", "AdminController", "deleteMarca");
+    
+    $r->addRoute("deleteComponente", "GET", "AdminController", "deleteComponente");
+    $r->addRoute("initEditarComponente", "GET", "AdminController", "modoEdicionComponente");
+    $r->addRoute("editComponente", "POST", "AdminController", "editComponente");
 
 
 

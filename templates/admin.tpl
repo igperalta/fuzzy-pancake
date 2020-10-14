@@ -64,11 +64,15 @@
                     <td>{$componente->gama}</td>
                     <td>
                         <div>
-                            <a class="edit" href="editComponente/{$componente->id_componente}">Editar</a>
+                            <form action="initEditarComponente" method="GET">
+                                <button type="submit" name="id_componente" value="{$componente->id_componente}"> Editar </button>
+                            </form>
                         </div>
     
                         <div>
-                            <a class="delete" href="deleteComponente/{$componente->id_componente}">Eliminar</a>
+                            <form action="deleteComponente" method="GET">
+                                <button type="submit" name="id_componente" value="{$componente->id_componente}"> Eliminar </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -76,11 +80,5 @@
         </tbody>
     </table>
 </section>
-
-
-
-<button> LOGOUT </button>
-
-{*FALTA BOTON DE LOGOUT, YA ESTA ENRUTADO Y LA FUNCION HECHA*}
 
 {include file="footer.tpl"}

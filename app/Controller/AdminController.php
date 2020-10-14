@@ -61,11 +61,13 @@ class AdminController
         }
     }
 
-    function deleteComponente($params = null)
-    {
-        $componente_id = $params[':ID'];
-        $this->model->bajaComponente($componente_id);
-        $this->view->ShowAdmin();
+    function deleteComponente()
+    {   
+        if(isset($_GET["id_componente"])){
+            $componente_id = $_GET["id_componente"];
+            $this->model->bajaComponente($componente_id);
+            $this->view->ShowAdmin();
+        }
     }
 
     function deleteMarca()
@@ -77,10 +79,10 @@ class AdminController
         }
     }
 
-    function modoEdicionComponente($params = null)
+    function modoEdicionComponente()
     {
-        if ((isset($params[':ID']))) {
-            $id_componente = $params[':ID'];
+        if ((isset($_GET["id_componente"]))) {
+            $id_componente = $_GET["id_componente"];
             $componente = $this->model->getComponenteInfoByID($id_componente);
             $this->view->renderEdicionComponente($componente);
         }
@@ -95,10 +97,10 @@ class AdminController
         }
     }
 
-    function editComponente($params = null)
+    function editComponente()
     {
-        if ((isset($params[':ID'])) && (isset($_POST['input-tipoComponente'])) && (isset($_POST['input-modeloComponente'])) && (isset($_POST['input-precio'])) && (isset($_POST['input-gama'])) && (isset($_POST['input-idMarca']))) {
-            $id_componente = $params[':ID'];
+        if ((isset($_POST['id_componente'])) && (isset($_POST['input-tipoComponente'])) && (isset($_POST['input-modeloComponente'])) && (isset($_POST['input-precio'])) && (isset($_POST['input-gama'])) && (isset($_POST['input-idMarca']))) {
+            $id_componente = $_POST['id_componente'];
             $tipo = $_POST['input-tipoComponente'];
             $modelo = $_POST['input-modeloComponente'];
             $precio = $_POST['input-precio'];

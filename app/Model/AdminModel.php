@@ -24,7 +24,8 @@ class AdminModel {
 
     function modificarComponente($id_componente, $tipo, $modelo, $precio, $gama, $id_marca) {
         $query = $this->db->prepare('UPDATE componente SET tipo=?, modelo=?, precio=?, gama=?, id_marca=? WHERE componente.id_componente=?');
-        $query->execute(array($id_componente, $tipo, $modelo, $precio, $gama, $id_marca));
+        
+        $query->execute(array($tipo, $modelo, $precio, $gama, $id_marca, $id_componente));
     }
 
     function getComponenteInfoByID($id_componente) {
