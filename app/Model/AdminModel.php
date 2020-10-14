@@ -18,7 +18,7 @@ class AdminModel {
     }
 
     function bajaComponente($id_componente) {
-        $query = $this->db->prepare('DELETE * FROM componente WHERE id_componente=?');
+        $query = $this->db->prepare('DELETE FROM componente WHERE id_componente=?');
         $query->execute(array($id_componente));
     }
 
@@ -36,18 +36,18 @@ class AdminModel {
 
     //MARCAS
     function altaNuevaMarca($nombre, $origen) {
-        $query = $this->db->prepare("INSERT INTO marca(nombre, origen) VALUES(?,?)");
+        $query = $this->db->prepare("INSERT INTO marca(marca, origen) VALUES(?,?)");
         $query->execute(array($nombre, $origen));
     }
 
     function bajaMarca($id_marca) {
-        $query = $this->db->prepare('DELETE * FROM marca WHERE id_marca=?');
+        $query = $this->db->prepare('DELETE FROM marca WHERE id_marca =?');
         $query->execute(array($id_marca));
     }
 
-    function modificarMarca($id_marca, $nombre, $origen) {
-        $query = $this->db->prepare('UPDATE marca SET nombre=?, origen=? WHERE marca.id_marca=?');
-        $query->execute(array($id_marca, $nombre, $origen));
+    function modificarMarca($id_marca, $marca, $origen) {
+        $query = $this->db->prepare('UPDATE marca SET marca=?, origen=? WHERE marca.id_marca=?');
+        $query->execute(array($marca, $origen, $id_marca));
     }
 
     function getComponentesAdmin() {

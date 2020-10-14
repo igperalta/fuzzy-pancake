@@ -68,10 +68,10 @@ class AdminController
         $this->view->ShowAdmin();
     }
 
-    function deleteMarca($params = null)
+    function deleteMarca()
     {
-        if ((isset($params[':ID']))) {
-            $id_marca = $params[':ID'];
+        if ((isset($_GET["id_marca"]))) {
+            $id_marca = $_GET["id_marca"];
             $this->model->bajaMarca($id_marca);
             $this->view->ShowAdmin();
         }
@@ -86,10 +86,10 @@ class AdminController
         }
     }
 
-    function modoEdicionMarca($params = null)
+    function modoEdicionMarca()
     {
-        if ((isset($params[':ID']))) {
-            $id_marca = $params[':ID'];
+        if ((isset($_GET["id_marca"]))) {
+            $id_marca = $_GET["id_marca"];
             $marca = $this->model->getMarcaInfoByID($id_marca);
             $this->view->renderEdicionMarca($marca);
         }
@@ -109,10 +109,10 @@ class AdminController
         }
     }
 
-    function editMarca($params = null)
+    function editMarca()
     {
-        if ((isset($params[':ID'])) && (isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
-            $id_marca = $params[':ID'];
+        if ((isset($_POST['id_marca'])) && (isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
+            $id_marca = $_POST["id_marca"];
             $nombre = $_POST['input-nombreMarca'];
             $origen = $_POST['input-origenMarca'];
             $this->model->modificarMarca($id_marca, $nombre, $origen);

@@ -1,9 +1,45 @@
 {include file="header.tpl"}
 
+<section class="marcas">
+    <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID marca</th>
+                <th>Nombre</th>
+                <th>Origen</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from= $marcas item= marca}
+                <tr>
+                    <td>{$marca->id_marca}</td>
+                    <td>{$marca->marca}</td>
+                    <td>{$marca->origen}</td>
+                    <td>
+                        <div>
+                            <form action="initEditarMarca" method="GET">
+                                <button type="submit" name="id_marca" value="{$marca->id_marca}"> Editar </button>
+                            </form>
+                        </div>
+    
+                        <div>
+                            <form action="deleteMarca" method="GET">
+                                <button type="submit" name="id_marca" value="{$marca->id_marca}"> Eliminar </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</section>
 
 
 <section class="componentes">
-    <h1 class="servicestitle">ADMINISTRAR BBDD EQUIPAMIENTO</h1>
+    <h1 class="servicestitle">ADMINISTRAR BBDD COMPONENTES</h1>
 
     <table>
         <thead>
@@ -39,43 +75,12 @@
             {/foreach}
         </tbody>
     </table>
+</section>
 
 
 
-    <section class="marcas">
-        <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
+<button> LOGOUT </button>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID marca</th>
-                    <th>Nombre</th>
-                    <th>Origen</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                {foreach from= $marcas item= marca}
-                    <tr>
-                        <td>{$marca->id_marca}</td>
-                        <td>{$marca->marca}</td>
-                        <td>{$marca->origen}</td>
-                        <td>
-                            <div>
-                                <a class="edit" href='.editMarca/$marca->id_marca.'>Editar</a>
-                            </div>
-    
-                            <div>
-                                <a class="delete" href='.deleteMarca/$marca->id_marca.'>Eliminar</a>
-                            </div>
-                        </td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
+{*FALTA BOTON DE LOGOUT, YA ESTA ENRUTADO Y LA FUNCION HECHA*}
 
-        <button> LOGOUT </button>
-
-        {*FALTA BOTON DE LOGOUT, YA ESTA ENRUTADO Y LA FUNCION HECHA*}
-
-        {include file="footer.tpl"}
+{include file="footer.tpl"}

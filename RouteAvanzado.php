@@ -12,12 +12,15 @@
     $r->addRoute("home", "GET", "PublicController", "homeController");
     $r->addRoute("login", "GET", "PublicController", "LoginController");
     $r->addRoute("logout", "GET", "PublicController", "Logout");
-    $r->addRoute("administration", "GET", "AdminController", "AdminController");
     $r->addRoute("servicios", "GET", "PublicController", "serviciosController");
     $r->addRoute("detalle", "GET", "PublicController", "detalleComponente");
     $r->addRoute("filtrar", "GET", "PublicController", "detalleMarca");
     $r->addRoute("verifyLogin", "POST", "PublicController", "VerifyLogin");
-
+    
+    $r->addRoute("administration", "GET", "AdminController", "AdminController");
+    $r->addRoute("initEditarMarca", "GET", "AdminController", "modoEdicionMarca");
+    $r->addRoute("editMarca", "POST", "AdminController", "editMarca");
+    $r->addRoute("deleteMarca", "GET", "AdminController", "deleteMarca");
 
 
 
