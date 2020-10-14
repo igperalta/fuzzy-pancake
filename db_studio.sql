@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Oct 08, 2020 at 06:51 PM
--- Server version: 5.7.26
--- PHP Version: 7.4.2
+-- Host: 127.0.0.1
+-- Generation Time: Oct 14, 2020 at 06:09 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -60,7 +61,7 @@ INSERT INTO `componente` (`id_componente`, `tipo`, `modelo`, `precio`, `gama`, `
 
 CREATE TABLE `marca` (
   `id_marca` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
+  `marca` varchar(20) NOT NULL,
   `origen` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,7 +69,7 @@ CREATE TABLE `marca` (
 -- Dumping data for table `marca`
 --
 
-INSERT INTO `marca` (`id_marca`, `nombre`, `origen`) VALUES
+INSERT INTO `marca` (`id_marca`, `marca`, `origen`) VALUES
 (3, 'Audient', 'Estados Unidos'),
 (4, 'Sennheiser', 'Estados Unidos'),
 (5, 'Shure', 'Estados Unidos'),
@@ -82,14 +83,21 @@ INSERT INTO `marca` (`id_marca`, `nombre`, `origen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`) VALUES
+(1, 'testAdmin@testeo.com', '$2y$10$Dvjw8NxfvW.vrGYTNrRFwO2px972PVkWqduvbMcQro3/hILELA/Jm');
 
 --
 -- Indexes for dumped tables
@@ -109,10 +117,10 @@ ALTER TABLE `marca`
   ADD PRIMARY KEY (`id_marca`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -131,10 +139,10 @@ ALTER TABLE `marca`
   MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -145,6 +153,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `componente`
   ADD CONSTRAINT `componente_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
