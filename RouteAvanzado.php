@@ -14,7 +14,7 @@
 
     $r->addRoute("home", "GET", "PublicController", "homeController");
     $r->addRoute("login", "GET", "PublicController", "LoginController");
-    $r->addRoute("logout", "GET", "PublicController", "Logout");
+    $r->addRoute("logout", "GET", "AuthHelper", "logout");
     $r->addRoute("servicios", "GET", "PublicController", "serviciosController");
     $r->addRoute("detalle", "GET", "PublicController", "detalleComponente");
     $r->addRoute("filtrar", "GET", "PublicController", "detalleMarca");

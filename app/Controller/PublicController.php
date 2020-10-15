@@ -2,17 +2,20 @@
 
 require_once 'app/Model/PublicModel.php';
 require_once 'app/View/PublicView.php';
+require_once 'app/Helper/AuthHelper.php';
 
 class PublicController
 {
     private $model;
     private $view;
+    private $auth_helper;
 
     //instancio modelo y vista
     public function __construct()
     {
         $this->model = new PublicModel();
         $this->view = new PublicView();
+        $this->auth_helper = new AuthHelper();
     }
 
     function homeController()
@@ -34,9 +37,7 @@ class PublicController
             $DB_user = $this->model->getUser($user);
             if ($DB_user) {
                 if (password_verify($pass, $DB_user->password)) {
-                    session_start();
-                    $_SESSION['current_user'] = $DB_user->email;
-                    header("Location: " . BASE_URL . "administration");
+                    $this->auth_helper->loginUser($DB_user);
                 } else {
                     $this->view->renderLogin("Password incorrecta.");
                 }
@@ -44,12 +45,6 @@ class PublicController
                 $this->view->renderLogin("Usuario no encontrado.");
             }
         }
-    }
-
-    function logout() {
-        session_start();
-        session_destroy();
-        header("Location: ". LOGIN);
     }
 
     function serviciosController()
