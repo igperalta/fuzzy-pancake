@@ -56,12 +56,11 @@
                 </tr>
             </thead>
             <tbody>
-
                 {foreach from=$componentes item=componente}
-                    <tr>
-                        <td>{$componente->tipo}</td>
-                        <td><a href='detalle?id={$componente->id_componente}'>{$componente->modelo}</a></td>
-                    </tr>
+                <tr>
+                    <td>{$componente->tipo}</td>
+                    <td><a href='detalle?id={$componente->id_componente}'>{$componente->modelo}</a></td>
+                </tr>
                 {/foreach}
             </tbody>
         </table>
@@ -71,9 +70,26 @@
             <h1 class="serviciostitle">MARCAS AMIGAS</h1>
             <ul>
                 {foreach from=$marcas item=marca}
-                    <li class="controlroomtext"><a href='filtrar?nombre={$marca->marca}'>{$marca->marca}</a></li>
+                <li class="controlroomtext"><a href='filtrar?nombre={$marca->marca}'>{$marca->marca}</a></li>
                 {/foreach}
-
             </ul>
+        </section>
+
+
+        <section class="filtrarComponentes">
+            <p class="serviciostitle">FILTRAR COMPONENTES POR MARCA</p>
+
+            <form class="reserva" id="formReserva" method="POST" action="filtrarComponente">
+
+                <span class="controlroomtext">Seleccione la marca</span>
+                <select name="input-idMarca">
+                    {foreach from=$marcas item=marca}
+                    <option value={$marca->id_marca}>{$marca->marca}</option>
+                    {/foreach}
+                </select>
+
+                <br>
+                <button type="submit" name="insert" id="js-confirmarButton" class="confirmarButton">Filtrar</button>
+            </form>
         </section>
         {include file="footer.tpl"}

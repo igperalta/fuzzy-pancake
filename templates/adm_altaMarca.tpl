@@ -5,10 +5,10 @@
 
     <form class="reserva" id="formReserva" method="POST" action="altaMarca">
 
-        <span class="spanReserva">Nombre</span>
+        <span class="controlroomtitle">Nombre</span>
         <input type="text" name="input-nombreMarca" placeholder="Nombre" required>
 
-        <span class="spanReserva">Origen</span>
+        <span class="controlroomtitle">Origen</span>
         <input type="text" name="input-origenMarca" placeholder="Origen" required>
 
         <br>

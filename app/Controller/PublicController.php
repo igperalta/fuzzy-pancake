@@ -2,20 +2,17 @@
 
 require_once 'app/Model/PublicModel.php';
 require_once 'app/View/PublicView.php';
-require_once 'app/Helper/AuthHelper.php';
 
 class PublicController
 {
     private $model;
     private $view;
-    private $auth_helper;
 
     //instancio modelo y vista
     public function __construct()
     {
         $this->model = new PublicModel();
         $this->view = new PublicView();
-        $this->auth_helper = new AuthHelper();
     }
 
     function homeController()
@@ -37,7 +34,9 @@ class PublicController
             $DB_user = $this->model->getUser($user);
             if ($DB_user) {
                 if (password_verify($pass, $DB_user->password)) {
-                    $this->auth_helper->loginUser($DB_user);
+                    session_start();
+                    $_SESSION['current_user'] = $DB_user->email;
+                    header("Location: " . BASE_URL . "administration");
                 } else {
                     $this->view->renderLogin("Password incorrecta.");
                 }
@@ -47,15 +46,21 @@ class PublicController
         }
     }
 
+    function logout() {
+        session_start();
+        session_destroy();
+        header("Location: ". LOGIN);
+    }
+
     function serviciosController()
     {
+        //$componentes = $this->model->getComponentes();
         $componentes = $this->model->getComponentes();
         $marcas = $this->model->getMarcas();
         $this->view->renderServicios($componentes, $marcas);
     }
 
-    function detalleComponente()
-    {
+    function detalleComponente() {
         if ((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
             $componente = $this->model->getComponenteByID($id);
@@ -72,12 +77,12 @@ class PublicController
         }
     }
 
-    function showComponentesPorMarca()
-    {
+    function filtrarComponente() {
         //verifica datos obligatorios
-        if ((isset($_REQUEST['marca']))) {
-            $marca = $_REQUEST['marca'];
-            $componentes = $this->model->getComponentesPorMarca($marca);
+        if ((isset($_POST['input-idMarca']))) {
+            $id_marca = $_POST['input-idMarca'];
+            $componentes = $this->model->getComponentesPorMarca($id_marca);
+            $marca = $this->model->getMarcaByID($id_marca);
             $this->view->renderComponentesPorMarca($marca, $componentes);
         }
     }

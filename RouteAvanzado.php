@@ -9,17 +9,19 @@
 
     $r = new Router();
 
-    
+    //PUBLICO
     $r->addRoute("", "GET", "PublicController", "homeController");
 
     $r->addRoute("home", "GET", "PublicController", "homeController");
     $r->addRoute("login", "GET", "PublicController", "LoginController");
-    $r->addRoute("logout", "GET", "AuthHelper", "logout");
+    $r->addRoute("logout", "GET", "PublicController", "Logout");
     $r->addRoute("servicios", "GET", "PublicController", "serviciosController");
     $r->addRoute("detalle", "GET", "PublicController", "detalleComponente");
     $r->addRoute("filtrar", "GET", "PublicController", "detalleMarca");
     $r->addRoute("verifyLogin", "POST", "PublicController", "VerifyLogin");
+    $r->addRoute("filtrarComponente", "POST", "PublicController", "filtrarComponente");
     
+    //ADMIN
     $r->addRoute("administration", "GET", "AdminController", "AdminController");
 
     $r->addRoute("altaComponente", "POST", "AdminController", "altaComponente");
@@ -27,7 +29,6 @@
     $r->addRoute("initAltaComponente", "GET", "AdminController", "initAltaComponente");
     $r->addRoute("initAltaMarca", "GET", "AdminController", "initAltaMarca");
     
-
     $r->addRoute("deleteMarca", "GET", "AdminController", "deleteMarca");
     $r->addRoute("initEditarMarca", "GET", "AdminController", "modoEdicionMarca");
     $r->addRoute("editMarca", "POST", "AdminController", "editMarca");

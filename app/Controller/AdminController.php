@@ -2,21 +2,30 @@
 
 require_once 'app/Model/AdminModel.php';
 require_once 'app/View/AdminView.php';
-require_once 'app/Helper/AuthHelper.php';
 
 class AdminController
 {
     private $model;
     private $view;
-    private $auth_helper;
 
     //instancio modelo y vista
     public function __construct()
     {
-        $this->auth_helper = new AuthHelper();
-        $this->auth_helper->VerifySession();
-        $this->view = new AdminView();
+        $this->VerifySession();
         $this->model = new AdminModel();
+        $this->view = new AdminView();
+    }
+
+    private function VerifySession()
+    {
+        session_start();
+        if (!isset($_SESSION['current_user'])) {
+            header("Location: " . LOGIN);
+            die();
+        }
+        else{
+            return true;
+        }
     }
 
     function AdminController()
@@ -61,8 +70,8 @@ class AdminController
     }
 
     function deleteComponente()
-    {
-        if (isset($_GET["id_componente"])) {
+    {   
+        if(isset($_GET["id_componente"])){
             $componente_id = $_GET["id_componente"];
             $this->model->bajaComponente($componente_id);
             $this->view->ShowAdmin();

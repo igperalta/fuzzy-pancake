@@ -41,10 +41,10 @@ class PublicModel
         //var_dump($componente);
     }
 
-    function getComponentesPorMarca($marca)
+    function getComponentesPorMarca($id_marca)
     {
-        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, marca.marca FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE marca.marca=?');
-        $query->execute(array($marca));
+        $query = $this->db->prepare('SELECT componente.tipo, componente.modelo, componente.precio, componente.gama, marca.marca FROM componente INNER JOIN marca ON componente.id_marca = marca.id_marca WHERE marca.id_marca=?');
+        $query->execute(array($id_marca));
         $componentes = $query->fetchAll(PDO::FETCH_OBJ);
         return $componentes;
     }

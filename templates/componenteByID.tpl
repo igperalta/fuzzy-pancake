@@ -1,4 +1,4 @@
-<h1>Detalle de componente: {$component[0]->marca} {$component[0]->modelo}</h1>
+<h1 class="serviciostitle">Detalle de componente: {$component[0]->marca} {$component[0]->modelo}</h1>
 
         <table>
                 <thead>
@@ -21,5 +21,5 @@
                     </tr>
                 </tbody>
                 </table>
-        <a href="servicios">Volver</a>
+        <a class="salagrabaciontitle" href="servicios">Volver</a>
 {include file="footer.tpl"}

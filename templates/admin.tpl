@@ -2,8 +2,7 @@
 
 <section class="marcas">
     <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
-    
-    <h3 class="servicestitle"> <a href="initAltaMarca"> INGRESAR NUEVA MARCA </a></h3>
+        <h3 class="servicestitle"> <a href="initAltaMarca">ALTA DE NUEVA MARCA </a></h3>
     <table>
         <thead>
             <tr>
@@ -36,14 +35,13 @@
             {/foreach}
         </tbody>
     </table>
-
 </section>
 
 
 <section class="componentes">
     <h1 class="servicestitle">ADMINISTRAR BBDD COMPONENTES</h1>
-    <h3 class="servicestitle"> <a href="initAltaComponente"> INGRESAR NUEVO COMPONENTE </a></h3>
-
+    <h3 class="servicestitle"> <a href="initAltaComponente"> ALTA DE NUEVO COMPONENTE</a></h3>
+    
     <table>
         <thead>
             <tr>

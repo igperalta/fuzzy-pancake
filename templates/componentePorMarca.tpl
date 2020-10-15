@@ -1,6 +1,6 @@
-        <h1>Filtrar componentes por marca: {$marca->nombre}</h2>
+        <h1 class="serviciostitle">Filtrar componentes por marca: {$marca[0]->marca}</h1>
 
-        //imprime la tabla de componentes
+        {*imprime la tabla de componentes*}
         <table>
             <thead>
                 <tr>
@@ -10,16 +10,16 @@
                     <th>Gama</th>
                 </tr>
             </thead>
-                <tbody>
+            <tbody>
 
-        {foreach from=$componentes item=componente}
-                    <tr>
-                        <td>{$componente->tipo}</td>
-                        <td>{$componente->modelo}</td>
-                        <td>{$componente->precio}</td>
-                        <td>{$componente->gama}</td>
-                    </tr>
-        {/foreach}
-                </tbody>
+                {foreach from=$componentes item=componente}
+                <tr>
+                    <td>{$componente->tipo}</td>
+                    <td>{$componente->modelo}</td>
+                    <td>{$componente->precio}</td>
+                    <td>{$componente->gama}</td>
+                </tr>
+                {/foreach}
+            </tbody>
         </table>
-        <a href='servicios'> Volver </a>
+        <a class="salagrabaciontitle" href='servicios'>Volver</a>

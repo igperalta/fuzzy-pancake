@@ -19,7 +19,7 @@
             </div>
 
             <div class="mensajeLogin">
-                <span class="mensajeLogin">{$message}</span>
+                <span>{$message}</span>
             </div>
         </form>
 
