@@ -25,7 +25,7 @@ class AdminController
         $this->commentsModel = new CommentsModel();
         $this->authHelper = new AuthHelper();
         $this->view = new AdminView();
-        $this->authHelper->VerifySession();
+        $this->authHelper->VerifyAdmin();
     }
 
     function AdminController()

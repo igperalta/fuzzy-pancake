@@ -12,8 +12,13 @@ class AuthHelper
             session_start();
         }
         $_SESSION['current_user'] = $user->email;
+        $_SESSION['is_admin'] = $user->is_admin;
         $_SESSION['last_active'] = time();
-        header("Location: " . BASE_URL . "administration");
+        if ($_SESSION['is_admin']) {
+            header("Location: " . BASE_URL . "administration");
+        } else {
+            header("Location: " . BASE_URL);
+        }
     }
 
     public function logout()
@@ -34,6 +39,60 @@ class AuthHelper
             $this->logout();
         } else {
             return true;
+        }
+        $_SESSION['last_active'] = time();
+    }
+
+    public function verifyAdmin()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!isset($_SESSION['is_admin']) or !$_SESSION['is_admin']) {
+            header("Location: " . BASE_URL);
+        } else {
+            return true;
+        }
+        $_SESSION['last_active'] = time();
+    }
+
+    public function CheckSession()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!isset($_SESSION['current_user']) or (!isset($_SESSION['last_active'])) or (time() - $_SESSION['last_active'] > 300)) {
+            return false;
+        } else {
+            return true;
+        }
+        $_SESSION['last_active'] = time();
+    }
+
+    public function isAdmin()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!isset($_SESSION['is_admin']) or !$_SESSION['is_admin']) {
+            return false;
+        } else {
+            return true;
+        }
+        $_SESSION['last_active'] = time();
+    }
+
+    public function isUser()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['is_admin'])) {
+            if (!$_SESSION['is_admin']) {
+                return true;
+            }
+        } else {
+            return false;
         }
         $_SESSION['last_active'] = time();
     }

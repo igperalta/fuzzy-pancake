@@ -16,4 +16,9 @@ class UsersModel
         $DB_user = $query->fetch(PDO::FETCH_OBJ);
         return $DB_user;
     }
+
+    function insertUser ($user, $password) {
+        $query = $this->db->prepare('INSERT INTO users(email, password) VALUES (?,?)');
+        $query->execute(array($user, $password));
+    }
 }

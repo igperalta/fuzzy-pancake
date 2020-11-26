@@ -37,6 +37,11 @@ class PublicController
         $this->view->renderLogin();
     }
 
+    function registerController()
+    {
+        $this->view->renderRegistration();
+    }
+
     function VerifyLogin()
     {
         $user = $_POST["input-email"];
@@ -44,7 +49,7 @@ class PublicController
 
         if (isset($user)) {
             $DB_user = $this->usersModel->getUser($user);
-            if ($DB_user) {
+            if ($DB_user and isset($pass)) {
                 if (password_verify($pass, $DB_user->password)) {
                     $this->authHelper->loginUser($DB_user);
                 } else {
@@ -56,6 +61,25 @@ class PublicController
         }
     }
 
+    function registerUser()
+    {
+
+        if (isset($_POST["input-email"]) and $_POST["input-email"] != "") {
+            $user = $_POST["input-email"];
+            if (isset($_POST["input-pass"]) and $_POST["input-pass"] != "") {
+                $pass = $_POST["input-pass"];
+                $encrypted_pass = password_hash($pass, PASSWORD_DEFAULT);
+                $this->usersModel->insertUser($user, $encrypted_pass);
+                $DB_user = $this->usersModel->getUser($user);
+                $this->authHelper->loginUser($DB_user);
+            } else {
+                $this->view->renderRegistration("Ingrese una password valida");
+            }
+        } else {
+            $this->view->renderRegistration("Ingrese un usuario valido");
+        }
+    }
+
     function serviciosController()
     {
         $components = $this->componentsModel->getComponents();
@@ -63,7 +87,8 @@ class PublicController
         $this->view->renderServicios($components, $brands);
     }
 
-    function detalleComponente() {
+    function detalleComponente()
+    {
         if ((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
             $component = $this->componentsModel->getComponentByID($id);
@@ -80,7 +105,8 @@ class PublicController
         }
     }
 
-    function filtrarComponente() {
+    function filtrarComponente()
+    {
         //verifica datos obligatorios
         if ((isset($_POST['input-idMarca']))) {
             $id_brand = $_POST['input-idMarca'];

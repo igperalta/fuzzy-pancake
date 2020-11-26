@@ -15,11 +15,13 @@
 
     $r->addRoute("home", "GET", "PublicController", "homeController");
     $r->addRoute("login", "GET", "PublicController", "LoginController");
+    $r->addRoute("register", "GET", "PublicController", "registerController");
     $r->addRoute("logout", "GET", "AuthHelper", "logout");
     $r->addRoute("servicios", "GET", "PublicController", "serviciosController");
     $r->addRoute("detalle", "GET", "PublicController", "detalleComponente");
     $r->addRoute("filtrar", "GET", "PublicController", "detalleMarca");
     $r->addRoute("verifyLogin", "POST", "PublicController", "VerifyLogin");
+    $r->addRoute("registerUser", "POST", "PublicController", "registerUser");
     $r->addRoute("filtrarComponente", "POST", "PublicController", "filtrarComponente");
     
     //ADMIN
