@@ -1,4 +1,4 @@
-        <h1 class="serviciostitle">Filtrar componentes por marca: {$marca[0]->marca}</h1>
+        <h1 class="serviciostitle">Filtrar componentes por marca: {$marca->marca}</h1>
 
         {*imprime la tabla de componentes*}
         <table>

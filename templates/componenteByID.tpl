@@ -1,4 +1,4 @@
-<h1 class="serviciostitle">Detalle de componente: {$component[0]->marca} {$component[0]->modelo}</h1>
+<h1 class="serviciostitle">Detalle de componente: {$component->marca} {$component->modelo}</h1>
 
         <table>
                 <thead>
@@ -13,11 +13,11 @@
                 <tbody>
 
                     <tr>
-                        <td>{$component[0]->tipo}</td>
-                        <td>{$component[0]->marca}</td>
-                        <td>{$component[0]->modelo}</td>
-                        <td>{$component[0]->precio}</td>
-                        <td>{$component[0]->gama}</td>
+                        <td>{$component->tipo}</td>
+                        <td>{$component->marca}</td>
+                        <td>{$component->modelo}</td>
+                        <td>{$component->precio}</td>
+                        <td>{$component->gama}</td>
                     </tr>
                 </tbody>
                 </table>

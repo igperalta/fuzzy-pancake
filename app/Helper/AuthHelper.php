@@ -22,6 +22,7 @@ class AuthHelper
             session_start();
         }
         session_destroy();
+        header("Location: " . BASE_URL . "login");
     }
 
     public function VerifySession()

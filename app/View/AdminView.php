@@ -4,18 +4,19 @@ class AdminView
 {
 
     private $titleAdministrador;
-    private $titleAltaMarca;
-    private $titleAltaComponente;
-    private $titleEditMarca;
+    private $titleInsertBrand;
+    private $titleInsertComponent;
+    private $titleUpdateBrand;
+    private $titleUpdateComponent;
 
     public function __construct()
     {
         $this->smarty = new Smarty();
         $this->titleAdministrador = "Silver Sea Studio | Administrador";
-        $this->titleAltaMarca = "Silver Sea Studio | Admin | Alta Marca";
-        $this->titleAltaComponente = "Silver Sea Studio | Admin | Alta Componente";
-        $this->titleEditMarca = "Silver Sea Studio | Admin | Editar Marca";
-        $this->titleEditComponente = "Silver Sea Studio | Admin | Editar Componente";
+        $this->titleInsertBrand = "Silver Sea Studio | Admin | Alta Marca";
+        $this->titleInsertComponent = "Silver Sea Studio | Admin | Alta Componente";
+        $this->titleUpdateBrand = "Silver Sea Studio | Admin | Editar Marca";
+        $this->titleUpdateComponent = "Silver Sea Studio | Admin | Editar Componente";
     }
 
     function ShowAdmin()
@@ -31,29 +32,29 @@ class AdminView
         $this->smarty->display('./templates/admin.tpl');
     }
 
-    function renderAltaMarca()
+    function renderInsertBrand()
     {
-        $this->smarty->assign('title', $this->titleAltaMarca);
+        $this->smarty->assign('title', $this->titleInsertBrand);
         $this->smarty->display('./templates/adm_altaMarca.tpl');
     }
     
-    function renderAltaComponente($marcas)
+    function renderInsertComponent($brands)
     {
-        $this->smarty->assign('title', $this->titleAltaComponente);
-        $this->smarty->assign('marcas', $marcas);
+        $this->smarty->assign('title', $this->titleInsertComponent);
+        $this->smarty->assign('brands', $brands);
         $this->smarty->display('./templates/adm_altaComponente.tpl');
     }
 
     function renderEdicionMarca($marca)
     {
-        $this->smarty->assign('title', $this->titleEditMarca);
+        $this->smarty->assign('title', $this->titleUpdateBrand);
         $this->smarty->assign('marca', $marca);
         $this->smarty->display('./templates/adm_editMarca.tpl');
     }
 
     function renderEdicionComponente($componente)
     {
-        $this->smarty->assign('title', $this->titleEditComponente);
+        $this->smarty->assign('title', $this->titleUpdateComponent);
         $this->smarty->assign('componente', $componente);
         $this->smarty->display('./templates/adm_editComponente.tpl');
     }

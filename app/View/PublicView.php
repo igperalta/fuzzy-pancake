@@ -1,31 +1,25 @@
 <?php
 require_once './libs/smarty/Smarty.class.php';
+require_once 'app/Helper/AuthHelper.php';
 
 class PublicView
 {
+    private $authHelper;
 
     public function __construct()
     {
         $this->smarty = new Smarty();
+        $this->authHelper = new AuthHelper();
         $this->titleHome = "Silver Sea Studio | Home";
         $this->titleServicios = "Silver Sea Studio | Servicios";
         $this->titleLogin = "Silver Sea Studio | Login";
     }
 
-    private function VerifySession()
-    {
-        session_start();
-        if (!isset($_SESSION['current_user'])) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     function renderHome()
     {
         $this->smarty->assign('title', $this->titleHome);
-        if ($this->VerifySession())
+        if ($this->authHelper->VerifySession())
             $this->smarty->display('./templates/header_a.tpl');
         else
             $this->smarty->display('./templates/header.tpl');
@@ -44,7 +38,7 @@ class PublicView
         $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('componentes', $componentes);
         $this->smarty->assign('marcas', $marcas);
-        if ($this->VerifySession())
+        if ($this->authHelper->VerifySession())
             $this->smarty->display('./templates/header_a.tpl');
         else
             $this->smarty->display('./templates/header.tpl');
@@ -56,7 +50,7 @@ class PublicView
     {
         $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('component', $componente);
-        if ($this->VerifySession())
+        if ($this->authHelper->VerifySession())
             $this->smarty->display('./templates/header_a.tpl');
         else
             $this->smarty->display('./templates/header.tpl');
@@ -67,7 +61,7 @@ class PublicView
         $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('componentes', $componentes);
         $this->smarty->assign('marca', $marca);
-        if ($this->VerifySession())
+        if ($this->authHelper->VerifySession())
             $this->smarty->display('./templates/header_a.tpl');
         else
             $this->smarty->display('./templates/header.tpl');
@@ -78,7 +72,7 @@ class PublicView
     function renderMarcaByNombre($marca) {
         $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('marca', $marca);
-        if($this->VerifySession())
+        if($this->authHelper->VerifySession())
             $this->smarty->display('./templates/header_a.tpl');
         else
             $this->smarty->display('./templates/header.tpl');

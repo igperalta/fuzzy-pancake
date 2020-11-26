@@ -1,57 +1,57 @@
 <?php
 
-require_once 'app/Model/AdminModel.php';
+require_once 'app/Model/ComponentsModel.php';
+require_once 'app/Model/BrandsModel.php';
+require_once 'app/Model/UsersModel.php';
+require_once 'app/Model/CommentsModel.php';
+require_once 'app/Helper/AuthHelper.php';
 require_once 'app/View/AdminView.php';
 
 class AdminController
 {
-    private $model;
+    private $componentsModel;
+    private $brandsModel;
+    private $usersModel;
+    private $commentsModel;
+    private $authHelper;
     private $view;
 
     //instancio modelo y vista
     public function __construct()
     {
-        $this->VerifySession();
-        $this->model = new AdminModel();
+        $this->componentsModel = new ComponentsModel();
+        $this->brandsModel = new BrandsModel();
+        $this->usersModel = new UsersModel();
+        $this->commentsModel = new CommentsModel();
+        $this->authHelper = new AuthHelper();
         $this->view = new AdminView();
-    }
-
-    private function VerifySession()
-    {
-        session_start();
-        if (!isset($_SESSION['current_user'])) {
-            header("Location: " . LOGIN);
-            die();
-        }
-        else{
-            return true;
-        }
+        $this->authHelper->VerifySession();
     }
 
     function AdminController()
     {
-        $componentes = $this->model->getComponentesAdmin();
-        $marcas = $this->model->getMarcasAdmin();
-        $this->view->renderAdministrarBBDD($componentes, $marcas);
+        $components = $this->componentsModel->getComponents();
+        $brands = $this->brandsModel->getBrands();
+        $this->view->renderAdministrarBBDD($components, $brands);
     }
 
-    function initAltaComponente()
+    function initInsertComponent()
     {
-        $marcas = $this->model->getMarcasAdmin();
-        $this->view->renderAltaComponente($marcas);
+        $brands = $this->brandsModel->getBrands();
+        $this->view->renderInsertComponent($brands);
     }
 
-    function initAltaMarca()
+    function initInsertBrand()
     {
-        $this->view->renderAltaMarca();
+        $this->view->renderInsertBrand();
     }
 
-    function altaMarca()
+    function insertMarca()
     {
         if ((isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
-            $marca = $_POST['input-nombreMarca'];
-            $origen = $_POST['input-origenMarca'];
-            $this->model->altaNuevaMarca($marca, $origen);
+            $brand = $_POST['input-nombreMarca'];
+            $origin = $_POST['input-origenMarca'];
+            $this->brandsModel->insertBrand($brand, $origin);
             $this->view->showAdmin();
         }
     }

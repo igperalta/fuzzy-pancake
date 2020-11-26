@@ -1,17 +1,29 @@
 <?php
 
-require_once 'app/Model/PublicModel.php';
+require_once 'app/Model/ComponentsModel.php';
+require_once 'app/Model/BrandsModel.php';
+require_once 'app/Model/UsersModel.php';
+require_once 'app/Model/CommentsModel.php';
+require_once 'app/Helper/AuthHelper.php';
 require_once 'app/View/PublicView.php';
 
 class PublicController
 {
-    private $model;
+    private $componentsModel;
+    private $brandsModel;
+    private $usersModel;
+    private $commentsModel;
+    private $authHelper;
     private $view;
 
     //instancio modelo y vista
     public function __construct()
     {
-        $this->model = new PublicModel();
+        $this->componentsModel = new ComponentsModel();
+        $this->brandsModel = new BrandsModel();
+        $this->usersModel = new UsersModel();
+        $this->commentsModel = new CommentsModel();
+        $this->authHelper = new AuthHelper();
         $this->view = new PublicView();
     }
 
@@ -31,12 +43,10 @@ class PublicController
         $pass = $_POST["input-pass"];
 
         if (isset($user)) {
-            $DB_user = $this->model->getUser($user);
+            $DB_user = $this->usersModel->getUser($user);
             if ($DB_user) {
                 if (password_verify($pass, $DB_user->password)) {
-                    session_start();
-                    $_SESSION['current_user'] = $DB_user->email;
-                    header("Location: " . BASE_URL . "administration");
+                    $this->authHelper->loginUser($DB_user);
                 } else {
                     $this->view->renderLogin("Password incorrecta.");
                 }
@@ -46,44 +56,37 @@ class PublicController
         }
     }
 
-    function logout() {
-        session_start();
-        session_destroy();
-        header("Location: ". LOGIN);
-    }
-
     function serviciosController()
     {
-        //$componentes = $this->model->getComponentes();
-        $componentes = $this->model->getComponentes();
-        $marcas = $this->model->getMarcas();
-        $this->view->renderServicios($componentes, $marcas);
+        $components = $this->componentsModel->getComponents();
+        $brands = $this->brandsModel->getBrands();
+        $this->view->renderServicios($components, $brands);
     }
 
     function detalleComponente() {
         if ((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
-            $componente = $this->model->getComponenteByID($id);
-            $this->view->renderComponenteByID($componente);
+            $component = $this->componentsModel->getComponentByID($id);
+            $this->view->renderComponenteByID($component);
         }
     }
 
     function detalleMarca()
     {
         if ((isset($_REQUEST['nombre']))) {
-            $nombre = $_REQUEST['nombre'];
-            $marca = $this->model->getMarcaByNombre($nombre);
-            $this->view->renderMarcaByNombre($marca);
+            $name = $_REQUEST['nombre'];
+            $brand = $this->brandsModel->getBrandByName($name);
+            $this->view->renderMarcaByNombre($brand);
         }
     }
 
     function filtrarComponente() {
         //verifica datos obligatorios
         if ((isset($_POST['input-idMarca']))) {
-            $id_marca = $_POST['input-idMarca'];
-            $componentes = $this->model->getComponentesPorMarca($id_marca);
-            $marca = $this->model->getMarcaByID($id_marca);
-            $this->view->renderComponentesPorMarca($marca, $componentes);
+            $id_brand = $_POST['input-idMarca'];
+            $components = $this->componentsModel->getComponentsByBrand($id_brand);
+            $brand = $this->brandsModel->getBrandByID($id_brand);
+            $this->view->renderComponentesPorMarca($brand, $components);
         }
     }
 }

@@ -19,8 +19,8 @@
 
         <span class="controlroomtitle">Marca</span>
         <select name="input-idMarca">
-            {foreach from=$marcas item=marca}
-                <option value={$marca->id_marca}>{$marca->marca}</option>
+            {foreach from=$brands item=brand}
+                <option value={$brand->id_marca}>{$brand->marca}</option>
             {/foreach}
         </select>
 
