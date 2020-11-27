@@ -40,6 +40,9 @@
     $r->addRoute("initEditarComponente", "GET", "AdminController", "modoEdicionComponente");
     $r->addRoute("editComponente", "POST", "AdminController", "editComponente");
 
+    $r->addRoute("toggleAdmin", "POST", "AdminController", "toggleAdmin");
+    $r->addRoute("deleteUser", "POST", "AdminController", "deleteUser");
+
 
 
 

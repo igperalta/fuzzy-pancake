@@ -24,11 +24,12 @@ class AdminView
         header("Location: " . BASE_URL . "administration");
     }
 
-    function renderAdministrarBBDD($componentes, $marcas)
+    function renderAdministrarBBDD($componentes, $marcas, $users)
     {
         $this->smarty->assign('title', $this->titleAdministrador);
         $this->smarty->assign('componentes', $componentes);
         $this->smarty->assign('marcas', $marcas);
+        $this->smarty->assign('users', $users);
         $this->smarty->display('./templates/admin.tpl');
     }
 

@@ -1,15 +1,15 @@
 {include file="header_a.tpl"}
 
 <section class="marcas">
-    <h1 class="servicestitle">ADMINISTRAR BBDD MARCAS</h1>
-        <h3 class="servicestitle"> <a href="initAltaMarca">ALTA DE NUEVA MARCA </a></h3>
+    <h1 class="servicestitle">MARCAS</h1>
+    <h3 class="servicestitle"> <a href="initAltaMarca">ALTA DE NUEVA MARCA </a></h3>
     <table>
         <thead>
             <tr>
                 <th>ID marca</th>
                 <th>Nombre</th>
                 <th>Origen</th>
-                <th>Accion</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -39,9 +39,9 @@
 
 
 <section class="componentes">
-    <h1 class="servicestitle">ADMINISTRAR BBDD COMPONENTES</h1>
+    <h1 class="servicestitle">COMPONENTES</h1>
     <h3 class="servicestitle"> <a href="initAltaComponente"> ALTA DE NUEVO COMPONENTE</a></h3>
-    
+
     <table>
         <thead>
             <tr>
@@ -51,7 +51,7 @@
                 <th>Modelo</th>
                 <th>Precio</th>
                 <th>Gama</th>
-                <th>Accion</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +80,43 @@
             {/foreach}
         </tbody>
     </table>
+</section>
+
+<section>
+    <h1 class="servicestitle">USUARIOS</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID user</th>
+                <th>Email</th>
+                <th>Es Administrador?</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from=$users item=user}
+                <tr>
+                    <td>{$user->id}</td>
+                    <td>{$user->email}</td>
+                    {if $user->is_admin}
+                        <td>Si</td>
+                        {else}
+                        <td>No</td>
+                    {/if}
+                    <td>
+                        <form action="toggleAdmin" method="POST">
+                            <button type="submit" name = "id_user" value="{$user->id}">Dar/quitar permisos </button>
+                        </form>
+
+                        <form action="deleteUser" method="POST">
+                            <button type="submit" name="id_user" value="{$user->id}"> Eliminar usuario </button>
+                        </form>
+                    </td>
+                </tr>
+            {/foreach}}
+        </tbody>
+    </table>
+
 </section>
 
 {include file="footer.tpl"}

@@ -32,7 +32,8 @@ class AdminController
     {
         $components = $this->componentsModel->getComponents();
         $brands = $this->brandsModel->getBrands();
-        $this->view->renderAdministrarBBDD($components, $brands);
+        $users = $this->usersModel->getUsers();
+        $this->view->renderAdministrarBBDD($components, $brands, $users);
     }
 
     function initInsertComponent()
@@ -127,6 +128,22 @@ class AdminController
             $origen = $_POST['input-origenMarca'];
             $this->model->modificarMarca($id_marca, $nombre, $origen);
             $this->view->showAdmin();
+        }
+    }
+
+    function toggleAdmin () {
+        if ((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
+            $id_user = $_POST['id_user'];
+            $this->usersModel->toggleAdmin($id_user);
+            $this->view->showAdmin();
+        }
+    }
+
+    function deleteUser () {
+        if((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
+            $id_user = $_POST['id_user'];
+            $this->usersModel->deleteUser($id_user);
+            $this->view->ShowAdmin();
         }
     }
 }
