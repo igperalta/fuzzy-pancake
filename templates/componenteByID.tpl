@@ -21,5 +21,7 @@
         </tr>
     </tbody>
 </table>
+
+
 <a class="salagrabaciontitle" href="servicios">Volver</a>
 {include file="footer.tpl"}

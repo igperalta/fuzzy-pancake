@@ -1,6 +1,6 @@
 <?php
 
-class BrandsModel
+class BrandModel
 {
 
     private $db;

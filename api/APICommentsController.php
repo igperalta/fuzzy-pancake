@@ -1,6 +1,6 @@
 <?php
 
-require_once './/app/Model/CommentsModel.php';
+require_once './/app/Model/CommentModel.php';
 require_once 'APIController.php';
 
 class APICommentsController extends APIController
@@ -9,7 +9,7 @@ class APICommentsController extends APIController
     function __construct()
     {
         parent::__construct();
-        $this->model = new CommentsModel();
+        $this->model = new CommentModel();
         $this->view = new APIView();
     }
 
@@ -42,7 +42,7 @@ class APICommentsController extends APIController
     public function postComment($params = null)
     {
         $body = $this->getData();
-        $id_comment = $this->model->insertComment($body->content, $body->score, $body->user_id);
+        $id_comment = $this->model->insertComment($body->content, $body->score, $body->user_id, $body->id_component);
         if ($id_comment) {
             $this->view->response($this->model->getComment($id_comment), 200);
         } else

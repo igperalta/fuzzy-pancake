@@ -17,7 +17,7 @@ class AuthHelper
         if ($_SESSION['is_admin']) {
             header("Location: " . BASE_URL . "administration");
         } else {
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "home");
         }
     }
 
@@ -49,7 +49,7 @@ class AuthHelper
             session_start();
         }
         if (!isset($_SESSION['is_admin']) or !$_SESSION['is_admin']) {
-            header("Location: " . BASE_URL);
+            header("Location: " . BASE_URL . "home");
         } else {
             return true;
         }

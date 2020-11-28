@@ -1,28 +1,28 @@
 <?php
 
-require_once 'app/Model/ComponentsModel.php';
-require_once 'app/Model/BrandsModel.php';
-require_once 'app/Model/UsersModel.php';
-require_once 'app/Model/CommentsModel.php';
+require_once 'app/Model/ComponentModel.php';
+require_once 'app/Model/BrandModel.php';
+require_once 'app/Model/UserModel.php';
+require_once 'app/Model/CommentModel.php';
 require_once 'app/Helper/AuthHelper.php';
 require_once 'app/View/AdminView.php';
 
 class AdminController
 {
-    private $componentsModel;
-    private $brandsModel;
-    private $usersModel;
-    private $commentsModel;
+    private $componentModel;
+    private $brandModel;
+    private $userModel;
+    private $commentModel;
     private $authHelper;
     private $view;
 
     //instancio modelo y vista
     public function __construct()
     {
-        $this->componentsModel = new ComponentsModel();
-        $this->brandsModel = new BrandsModel();
-        $this->usersModel = new UsersModel();
-        $this->commentsModel = new CommentsModel();
+        $this->componentModel = new ComponentModel();
+        $this->brandModel = new BrandModel();
+        $this->userModel = new UserModel();
+        $this->commentModel = new CommentModel();
         $this->authHelper = new AuthHelper();
         $this->view = new AdminView();
         $this->authHelper->VerifyAdmin();
@@ -30,15 +30,15 @@ class AdminController
 
     function AdminController()
     {
-        $components = $this->componentsModel->getComponents();
-        $brands = $this->brandsModel->getBrands();
-        $users = $this->usersModel->getUsers();
+        $components = $this->componentModel->getComponents();
+        $brands = $this->brandModel->getBrands();
+        $users = $this->userModel->getUsers();
         $this->view->renderAdministrarBBDD($components, $brands, $users);
     }
 
     function initInsertComponent()
     {
-        $brands = $this->brandsModel->getBrands();
+        $brands = $this->brandModel->getBrands();
         $this->view->renderInsertComponent($brands);
     }
 
@@ -52,7 +52,7 @@ class AdminController
         if ((isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
             $brand = $_POST['input-nombreMarca'];
             $origin = $_POST['input-origenMarca'];
-            $this->brandsModel->insertBrand($brand, $origin);
+            $this->brandModel->insertBrand($brand, $origin);
             $this->view->showAdmin();
         }
     }
@@ -65,7 +65,7 @@ class AdminController
             $precio = $_POST['input-precio'];
             $gama = $_POST['input-gama'];
             $id_marca = $_POST['input-idMarca'];
-            $this->model->altaNuevoComponente($tipo, $modelo, $precio, $gama, $id_marca);
+            $this->componentModel->insertComponent($tipo, $modelo, $precio, $gama, $id_marca);
             $this->view->ShowAdmin();
         }
     }
@@ -74,7 +74,7 @@ class AdminController
     {   
         if(isset($_GET["id_componente"])){
             $componente_id = $_GET["id_componente"];
-            $this->model->bajaComponente($componente_id);
+            $this->componentModel->deleteComponent($componente_id);
             $this->view->ShowAdmin();
         }
     }
@@ -83,7 +83,7 @@ class AdminController
     {
         if ((isset($_GET["id_marca"]))) {
             $id_marca = $_GET["id_marca"];
-            $this->model->bajaMarca($id_marca);
+            $this->brandModel->deleteBrand($id_marca);
             $this->view->ShowAdmin();
         }
     }
@@ -92,7 +92,7 @@ class AdminController
     {
         if ((isset($_GET["id_componente"]))) {
             $id_componente = $_GET["id_componente"];
-            $componente = $this->model->getComponenteInfoByID($id_componente);
+            $componente = $this->componentModel->getComponentInfoByID($id_componente);
             $this->view->renderEdicionComponente($componente);
         }
     }
@@ -101,7 +101,7 @@ class AdminController
     {
         if ((isset($_GET["id_marca"]))) {
             $id_marca = $_GET["id_marca"];
-            $marca = $this->model->getMarcaInfoByID($id_marca);
+            $marca = $this->brandModel->getBrandByID($id_marca);
             $this->view->renderEdicionMarca($marca);
         }
     }
@@ -115,7 +115,7 @@ class AdminController
             $precio = $_POST['input-precio'];
             $gama = $_POST['input-gama'];
             $id_marca = $_POST['input-idMarca'];
-            $this->model->modificarComponente($id_componente, $tipo, $modelo, $precio, $gama, $id_marca);
+            $this->componentModel->updateComponent($id_componente, $tipo, $modelo, $precio, $gama, $id_marca);
             $this->view->ShowAdmin();
         }
     }
@@ -126,7 +126,7 @@ class AdminController
             $id_marca = $_POST["id_marca"];
             $nombre = $_POST['input-nombreMarca'];
             $origen = $_POST['input-origenMarca'];
-            $this->model->modificarMarca($id_marca, $nombre, $origen);
+            $this->brandModel->updateBrand($id_marca, $nombre, $origen);
             $this->view->showAdmin();
         }
     }
@@ -134,7 +134,7 @@ class AdminController
     function toggleAdmin () {
         if ((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
             $id_user = $_POST['id_user'];
-            $this->usersModel->toggleAdmin($id_user);
+            $this->userModel->toggleAdmin($id_user);
             $this->view->showAdmin();
         }
     }
@@ -142,7 +142,7 @@ class AdminController
     function deleteUser () {
         if((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
             $id_user = $_POST['id_user'];
-            $this->usersModel->deleteUser($id_user);
+            $this->userModel->deleteUser($id_user);
             $this->view->ShowAdmin();
         }
     }

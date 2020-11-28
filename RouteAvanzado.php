@@ -11,8 +11,6 @@
     $r = new Router();
 
     //PUBLICO
-    $r->addRoute("", "GET", "PublicController", "homeController");
-
     $r->addRoute("home", "GET", "PublicController", "homeController");
     $r->addRoute("login", "GET", "PublicController", "LoginController");
     $r->addRoute("register", "GET", "PublicController", "registerController");

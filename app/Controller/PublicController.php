@@ -1,43 +1,43 @@
 <?php
 
-require_once 'app/Model/ComponentsModel.php';
-require_once 'app/Model/BrandsModel.php';
-require_once 'app/Model/UsersModel.php';
-require_once 'app/Model/CommentsModel.php';
+require_once 'app/Model/ComponentModel.php';
+require_once 'app/Model/BrandModel.php';
+require_once 'app/Model/UserModel.php';
+require_once 'app/Model/CommentModel.php';
 require_once 'app/Helper/AuthHelper.php';
 require_once 'app/View/PublicView.php';
 
 class PublicController
 {
-    private $componentsModel;
-    private $brandsModel;
-    private $usersModel;
-    private $commentsModel;
+    private $componentModel;
+    private $brandModel;
+    private $userModel;
+    private $commentModel;
     private $authHelper;
     private $view;
 
     //instancio modelo y vista
     public function __construct()
     {
-        $this->componentsModel = new ComponentsModel();
-        $this->brandsModel = new BrandsModel();
-        $this->usersModel = new UsersModel();
-        $this->commentsModel = new CommentsModel();
+        $this->componentModel = new ComponentModel();
+        $this->brandModel = new BrandModel();
+        $this->userModel = new UserModel();
+        $this->commentModel = new CommentModel();
         $this->authHelper = new AuthHelper();
         $this->view = new PublicView();
     }
 
-    function homeController()
+    function homeController($params = null)
     {
         $this->view->renderHome();
     }
 
-    function LoginController()
+    function LoginController($params = null)
     {
         $this->view->renderLogin();
     }
 
-    function registerController()
+    function registerController($params = null)
     {
         $this->view->renderRegistration();
     }
@@ -48,7 +48,7 @@ class PublicController
         $pass = $_POST["input-pass"];
 
         if (isset($user)) {
-            $DB_user = $this->usersModel->getUser($user);
+            $DB_user = $this->userModel->getUser($user);
             if ($DB_user and isset($pass)) {
                 if (password_verify($pass, $DB_user->password)) {
                     $this->authHelper->loginUser($DB_user);
@@ -69,8 +69,8 @@ class PublicController
             if (isset($_POST["input-pass"]) and $_POST["input-pass"] != "") {
                 $pass = $_POST["input-pass"];
                 $encrypted_pass = password_hash($pass, PASSWORD_DEFAULT);
-                $this->usersModel->insertUser($user, $encrypted_pass);
-                $DB_user = $this->usersModel->getUser($user);
+                $this->userModel->insertUser($user, $encrypted_pass);
+                $DB_user = $this->userModel->getUser($user);
                 $this->authHelper->loginUser($DB_user);
             } else {
                 $this->view->renderRegistration("Ingrese una password valida");
@@ -82,8 +82,8 @@ class PublicController
 
     function serviciosController()
     {
-        $components = $this->componentsModel->getComponents();
-        $brands = $this->brandsModel->getBrands();
+        $components = $this->componentModel->getComponents();
+        $brands = $this->brandModel->getBrands();
         $this->view->renderServicios($components, $brands);
     }
 
@@ -91,7 +91,7 @@ class PublicController
     {
         if ((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
-            $component = $this->componentsModel->getComponentByID($id);
+            $component = $this->componentModel->getComponentByID($id);
             $this->view->renderComponenteByID($component);
         }
     }
@@ -100,7 +100,7 @@ class PublicController
     {
         if ((isset($_REQUEST['nombre']))) {
             $name = $_REQUEST['nombre'];
-            $brand = $this->brandsModel->getBrandByName($name);
+            $brand = $this->brandModel->getBrandByName($name);
             $this->view->renderMarcaByNombre($brand);
         }
     }
@@ -110,8 +110,8 @@ class PublicController
         //verifica datos obligatorios
         if ((isset($_POST['input-idMarca']))) {
             $id_brand = $_POST['input-idMarca'];
-            $components = $this->componentsModel->getComponentsByBrand($id_brand);
-            $brand = $this->brandsModel->getBrandByID($id_brand);
+            $components = $this->componentModel->getComponentsByBrand($id_brand);
+            $brand = $this->brandModel->getBrandByID($id_brand);
             $this->view->renderComponentesPorMarca($brand, $components);
         }
     }
