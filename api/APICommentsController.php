@@ -1,32 +1,51 @@
 <?php
 
 require_once './/app/Model/CommentsModel.php';
-require_once './api/APIView.php';
+require_once 'APIController.php';
 
-class APICommentsController {
-    
-    private $commentsModel;
-    private $view;
+class APICommentsController extends APIController
+{
 
     function __construct()
     {
-        $this->commentsModel = new CommentsModel(); 
+        parent::__construct();
+        $this->model = new CommentsModel();
         $this->view = new APIView();
     }
 
-    public function getComments($params = null) {
-        $comments = $this->commentsModel->getComments();
+    public function getComments($params = null)
+    {
+        $comments = $this->model->getComments();
         $this->view->response($comments, 200);
     }
 
-    public function getComment ($params = null) {
+    public function getComment($params = null)
+    {
         $comment_id = $params[':ID'];
-        $comment = $this->commentsModel->getComment($comment_id);
+        $comment = $this->model->getComment($comment_id);
         if ($comment) {
             $this->view->response($comment, 200);
-        }
-        else
+        } else
             $this->view->response("El comentario con ID -> $comment_id no fue encontrado", 404);
+    }
 
+    public function deleteComment($params = null)
+    {
+        $comment_id = $params[':ID'];
+        $result = $this->model->deleteComment($comment_id);
+        if ($result > 0) {
+            $this->view->response("El comentario con ID -> $comment_id fue borrado exitosamente", 200);
+        } else
+            $this->view->response("El comentario con ID -> $comment_id no fue encontrado", 404);
+    }
+
+    public function postComment($params = null)
+    {
+        $body = $this->getData();
+        $id_comment = $this->model->insertComment($body->content, $body->score, $body->user_id);
+        if ($id_comment) {
+            $this->view->response($this->model->getComment($id_comment), 200);
+        } else
+            $this->view->response("El comentario no pudo ser insertado", 404);
     }
 }
