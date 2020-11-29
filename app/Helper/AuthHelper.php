@@ -11,6 +11,7 @@ class AuthHelper
         if (!isset($_SESSION)) {
             session_start();
         }
+        $_SESSION['id_user'] = $user->id;
         $_SESSION['current_user'] = $user->email;
         $_SESSION['is_admin'] = $user->is_admin;
         $_SESSION['last_active'] = time();
@@ -96,4 +97,16 @@ class AuthHelper
         }
         $_SESSION['last_active'] = time();
     }
+
+    public function getCurrentUserID() {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+        if (isset($_SESSION['id_user'])) {
+            return $_SESSION['id_user'];
+        }
+        else 
+            return 0;
+    }
+
 }

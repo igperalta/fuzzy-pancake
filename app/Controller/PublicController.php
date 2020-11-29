@@ -92,7 +92,8 @@ class PublicController
         if ((isset($_REQUEST['id']))) {
             $id = $_REQUEST['id'];
             $component = $this->componentModel->getComponentByID($id);
-            $this->view->renderComponenteByID($component);
+            $user = $this->userModel->getUserByID($this->authHelper->getCurrentUserID());
+            $this->view->renderComponenteByID($component, $user);
         }
     }
 

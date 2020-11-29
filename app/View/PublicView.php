@@ -58,10 +58,11 @@ class PublicView
         $this->smarty->display('./templates/servicios.tpl');
     }
 
-    function renderComponenteByID($componente)
+    function renderComponenteByID($componente, $user)
     {
         $this->smarty->assign('title', $this->titleServicios);
         $this->smarty->assign('component', $componente);
+        $this->smarty->assign('user', $user);
         if ($this->authHelper->isAdmin())
             $this->smarty->display('./templates/header_a.tpl');
         else if ($this->authHelper->isUser())

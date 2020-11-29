@@ -17,6 +17,13 @@ class CommentModel
         return $comments;
     }
 
+    function getCommentsByComponentID($component_id) {
+        $query = $this->db->prepare ('SELECT comment.content, comment.score, user.email FROM comment INNER JOIN user ON comment.id_user = user.id WHERE comment.id_component=?');
+        $query->execute(array($component_id));
+        $comments = $query->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+
     function getComment($id_comment)
     {
         $query = $this->db->prepare('SELECT comment.id_comment, comment.content, comment.score, comment.id_user, comment.id_component FROM comment WHERE comment.id_comment=?');

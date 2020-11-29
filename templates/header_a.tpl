@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="shortcut icon" href="./css/images/favicon.ico" type="image/x-icon">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="./js/tpe.js"></script>
     </head>
 

@@ -1,6 +1,9 @@
 @font-face {
     font-family: "Code LIGHT";
-    src: url("./fonts/CODELight.ttf") format("truetype"), url("./fonts/CODELight.otf") format("otf"), url("./fonts/CODELight.woff") format("woff"), url("./fonts/CODELight.woff2") format("woff2");
+    src: url("./fonts/CODELight.ttf") format("truetype"),
+     url("./fonts/CODELight.otf") format("otf"),
+      url("./fonts/CODELight.woff") format("woff"),
+       url("./fonts/CODELight.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
@@ -159,6 +162,21 @@ div.navbar-collapse {
     border-top: solid 1px whitesmoke;
     border-bottom: solid 1px whitesmoke;
     width: 99%;
+}
+
+.formLogReg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+    margin: 1% 1% 1% 1%;
+    background-color: rgba(44, 44, 44, 0.7);
+    border-top: solid 1px whitesmoke;
+    border-bottom: solid 1px whitesmoke;
+    width: 99%;
+    color: white;
 }
 
 .tablaTarifas {
@@ -339,25 +357,31 @@ section li span {
 .contactossstudio {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.form {
-    background-color: rgba(0, 0, 0, 0.400);
-    width: 90%;
-    color: white;
+.formComments, .commentsSection {
     font-family: "Code BOLD", Arial, Helvetica, sans-serif;
-}
-
-.reserva {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.800);
+    padding: 1%;
     height: 100%;
     text-align: center;
-    padding: 10px;
 }
+
+.contentInput {
+    height: 25%;
+}
+
+.commentButton img {
+    height: 50%;
+    width: 100%;
+}
+
+.commentButton {
+    width: 45%;
+}
+
 
 .reserva span, .reserva input, .reserva select {
     margin-top: 3%;
@@ -390,6 +414,7 @@ section li span {
     flex-direction: column;
     justify-content: baseline;
 }
+
 
 .confirmarButton {
     background-color: rgba(44, 44, 44, 0.7);

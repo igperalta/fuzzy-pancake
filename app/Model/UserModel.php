@@ -17,6 +17,13 @@ class UserModel
         return $DB_user;
     }
 
+    function getUserByID ($user_id){
+        $query = $this->db->prepare('SELECT * FROM user WHERE id = ?');
+        $query->execute(array($user_id));
+        $DB_user = $query->fetch(PDO::FETCH_OBJ);
+        return $DB_user;
+    }
+
     function getUsers()
     {
         $query = $this->db->prepare('SELECT * FROM user');

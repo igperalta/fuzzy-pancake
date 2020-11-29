@@ -1,8 +1,8 @@
 {include file="header.tpl"}
 <p class="servicestitle">INICIAR SESIÓN</p>
-<div class="contactossstudio">
-    <section class="form">
-        <form class="reserva" id="formReserva" action="verifyLogin" method="POST">
+<div>
+    <section>
+        <form class="formLogReg" action="verifyLogin" method="POST">
 
             <span class="spanReserva">E-MAIL</span>
             <input type="text" name="input-email" placeholder="E-MAIL" id="email">
@@ -22,7 +22,8 @@
                 <span>{$message}</span>
             </div>
         </form>
-
+    </section>
+</div>
         <img class="studiodrums" src="./css/images/studiodrums.png" alt="Bateria
                     de Estudio">
         {include file="footer.tpl"}
