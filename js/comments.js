@@ -3,12 +3,14 @@ let form_comment = document.querySelector("#js-form-comment");
 let current_user = document.querySelector("#js-current-user");
 let input_content = document.querySelector("#js-content");
 let input_score = document.querySelector("#js-score");
-let btn_comment_submit = document.querySelector("#js-postComment-button");
+let btn_comment_submit = document.querySelector("#js-btn-postComment");
+let btns_comment_delete = document.querySelectorAll(".js-btn-deleteComment");
 
 let comment_app = new Vue({
     el: '#app-comment',
     data: {
-        comments: []
+        comments: [],
+        admin: false
     }
 })
 
@@ -17,7 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         postComment();
     });
+    if(form_comment.dataset.userLvl == 1){
+        comment_app.admin = true;
+    }
     getCommentsByComponentID(form_comment.dataset.componentId);
+    
 })
 
 
@@ -31,7 +37,9 @@ function getComments() {
 function getCommentsByComponentID(componentID) {
     fetch("api/comments/component/" + componentID)
         .then(response => response.json())
-        .then(comments => comment_app.comments = comments)
+        .then(comments => {
+            comment_app.comments = comments;
+        })
         .catch(error => console.log(error));
 
 }

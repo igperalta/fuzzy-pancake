@@ -369,6 +369,12 @@ section li span {
     text-align: center;
 }
 
+.commentAuthor {
+    font-family: "Code BOLD", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .contentInput {
     height: 25%;
 }
