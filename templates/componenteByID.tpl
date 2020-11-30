@@ -23,5 +23,8 @@
 
 {include file="comments.tpl"}
 
-<a class="salagrabaciontitle" href="servicios">Volver</a>
+<div class="d-flex justify-content-center align-items-end mt-3 mb-3">
+    <a role="button" class="btn btn-dark btn-lg" href="servicios">Volver</a>
+</div>
+
 {include file="footer.tpl"}

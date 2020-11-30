@@ -1,9 +1,9 @@
 <section class="commentsSection container">
     {include file="vue/comments.vue"}
-    {if $user}
-        <div class="row">
-            <div class="col-md-12">
-                <form action="postComment" method="POST" class="reserva" id="js-form-comment" data-user-id="{$user->id}" data-component-id="{$component->id_componente}" data-user-lvl="{$user->is_admin}">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" class="reserva" id="js-form-comment" {if $user}data-user-id="{$user->id}" data-user-lvl="{$user->is_admin}" {/if} data-component-id="{$component->id_componente}">
+                {if $user}
                     <div class="formComments">
                         <span id="js-current-user">Comentando como {$user->email} </span>
                         <div class="row">
@@ -22,16 +22,16 @@
                             </select>
                         </div>
                         <div class="row">
-                            <span class="spanReserva col-5 offset-1">Para publicar su comentario haga click en el logo</span>
-                            <div class="offset-2 col-3">
+                            <div class="d-flex flex-row align-items-center justify-content-center mt-3">
+                                <span class="spanReserva col-5 offset-1">Para publicar su comentario haga click en el logo</span>
                                 <button type="submit" class="commentButton" id="js-btn-postComment">
                                     <img src="./css/images/botoncaptcha.png" alt=""></button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                {/if}
+            </form>
         </div>
-    {/if}
+    </div>
 </section>
 <script src="./js/comments.js"></script>
