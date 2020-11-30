@@ -49,7 +49,11 @@ class AdminController
 
     function insertMarca()
     {
-        if ((isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
+        if ((isset($_POST['input-nombreMarca'])) &&
+            (isset($_POST['input-origenMarca'])) &&
+            ($_POST['input-origenMarca'] != "") &&
+            ($_POST['input-nombreMarca'] != "")
+        ) {
             $brand = $_POST['input-nombreMarca'];
             $origin = $_POST['input-origenMarca'];
             $this->brandModel->insertBrand($brand, $origin);
@@ -59,7 +63,17 @@ class AdminController
 
     function altaComponente()
     {
-        if ((isset($_POST['input-tipoComponente'])) && (isset($_POST['input-modeloComponente'])) && (isset($_POST['input-precio'])) && (isset($_POST['input-gama'])) && (isset($_POST['input-idMarca']))) {
+        if ((isset($_POST['input-tipoComponente'])) &&
+            (isset($_POST['input-modeloComponente'])) &&
+            (isset($_POST['input-precio'])) &&
+            (isset($_POST['input-gama'])) &&
+            (isset($_POST['input-idMarca'])) &&
+            ($_POST['input-tipoComponente'] != "") &&
+            ($_POST['input-modeloComponente'] != "") &&
+            ($_POST['input-precio'] != "") &&
+            ($_POST['input-gama'] != "") &&
+            ($_POST['input-idMarca'] != "")
+        ) {
             $tipo = $_POST['input-tipoComponente'];
             $modelo = $_POST['input-modeloComponente'];
             $precio = $_POST['input-precio'];
@@ -71,8 +85,8 @@ class AdminController
     }
 
     function deleteComponente()
-    {   
-        if(isset($_GET["id_componente"])){
+    {
+        if (isset($_GET["id_componente"]) && ($_GET["id_componente"] != "")) {
             $componente_id = $_GET["id_componente"];
             $this->componentModel->deleteComponent($componente_id);
             $this->view->ShowAdmin();
@@ -81,7 +95,7 @@ class AdminController
 
     function deleteMarca()
     {
-        if ((isset($_GET["id_marca"]))) {
+        if ((isset($_GET["id_marca"])) && ($_GET["id_marca"] != "")) {
             $id_marca = $_GET["id_marca"];
             $this->brandModel->deleteBrand($id_marca);
             $this->view->ShowAdmin();
@@ -90,7 +104,7 @@ class AdminController
 
     function modoEdicionComponente()
     {
-        if ((isset($_GET["id_componente"]))) {
+        if ((isset($_GET["id_componente"])) && ($_GET["id_componente"] != "")) {
             $id_componente = $_GET["id_componente"];
             $componente = $this->componentModel->getComponentInfoByID($id_componente);
             $this->view->renderEdicionComponente($componente);
@@ -99,7 +113,7 @@ class AdminController
 
     function modoEdicionMarca()
     {
-        if ((isset($_GET["id_marca"]))) {
+        if ((isset($_GET["id_marca"])) && ($_GET["id_marca"] != "")) {
             $id_marca = $_GET["id_marca"];
             $marca = $this->brandModel->getBrandByID($id_marca);
             $this->view->renderEdicionMarca($marca);
@@ -108,7 +122,19 @@ class AdminController
 
     function editComponente()
     {
-        if ((isset($_POST['id_componente'])) && (isset($_POST['input-tipoComponente'])) && (isset($_POST['input-modeloComponente'])) && (isset($_POST['input-precio'])) && (isset($_POST['input-gama'])) && (isset($_POST['input-idMarca']))) {
+        if ((isset($_POST['id_componente'])) &&
+            (isset($_POST['input-tipoComponente'])) &&
+            (isset($_POST['input-modeloComponente'])) &&
+            (isset($_POST['input-precio'])) &&
+            (isset($_POST['input-gama'])) &&
+            (isset($_POST['input-idMarca'])) &&
+            ($_POST['id_componente'] != "") &&
+            ($_POST['input-tipoComponente'] != "") &&
+            ($_POST['input-modeloComponente'] != "") &&
+            ($_POST['input-precio'] != "") &&
+            ($_POST['input-gama'] != "") &&
+            ($_POST['input-idMarca'] != "")
+        ) {
             $id_componente = $_POST['id_componente'];
             $tipo = $_POST['input-tipoComponente'];
             $modelo = $_POST['input-modeloComponente'];
@@ -122,7 +148,13 @@ class AdminController
 
     function editMarca()
     {
-        if ((isset($_POST['id_marca'])) && (isset($_POST['input-nombreMarca'])) && (isset($_POST['input-origenMarca']))) {
+        if ((isset($_POST['id_marca'])) &&
+            (isset($_POST['input-nombreMarca'])) &&
+            (isset($_POST['input-origenMarca'])) &&
+            ($_POST['id_marca'] != "") &&
+            ($_POST['input-nombreMarca'] != "") &&
+            ($_POST['input-origenMarca'] != "")
+        ) {
             $id_marca = $_POST["id_marca"];
             $nombre = $_POST['input-nombreMarca'];
             $origen = $_POST['input-origenMarca'];
@@ -131,7 +163,8 @@ class AdminController
         }
     }
 
-    function toggleAdmin () {
+    function toggleAdmin()
+    {
         if ((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
             $id_user = $_POST['id_user'];
             $this->userModel->toggleAdmin($id_user);
@@ -139,8 +172,9 @@ class AdminController
         }
     }
 
-    function deleteUser () {
-        if((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
+    function deleteUser()
+    {
+        if ((isset($_POST['id_user'])) && !empty($_POST['id_user'])) {
             $id_user = $_POST['id_user'];
             $this->userModel->deleteUser($id_user);
             $this->view->ShowAdmin();
